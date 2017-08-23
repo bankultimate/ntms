@@ -20,7 +20,7 @@
 <body>
 	<!--Header-->
 	<div class="container">
-		123456789
+		
 	</div> <!--จบ Header-->
 	
 	
