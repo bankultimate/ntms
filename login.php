@@ -20,7 +20,7 @@
 <body>
 	<!--Header-->
 	<div class="container">
-		
+		This is home
 	</div> <!--จบ Header-->
 	
 	
