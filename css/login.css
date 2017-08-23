@@ -183,7 +183,24 @@ label.form-invalid:after {
   font-weight: bold;
 }
 /*header */
+.container{
+	background: #9acd32;
+	border-radius: 25px;
+}
+h1{
+	background: #598234;
+	border-radius: 25px;
+	font-size: 60px;
+	color : #FFFFFF;
+	padding : 10px 0 5px 20px;
+}
 
+p.head{
+	font-size: 22px;
+	color : #505160;
+	margin-left : 10px;
+	padding : 0 0 5px 10px;
+}
 /*end header*/
 
 

@@ -1,6 +1,6 @@
 /*=== 1. General Structure ===*/
 body {
-  background-image: url("/picture/field.jpg");
+  background-image: url("/ntms/picture/field.jpg");
   font-family: 'Varela Round';
 }
 
@@ -19,9 +19,7 @@ body {
 	font-size : 48px;
 	
 }
-.badge-secondary {
-	
-}
+
 h1{
 	display : inline;
 	color: #FFFFFF;
