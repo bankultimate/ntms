@@ -42,9 +42,12 @@
 						</div>
 					</div>
 					<div class="container box2"> <!--กล่อง result แสดงผล-->
-					Result ทำให้วางเป็น pattern ไม่เอาทุกบร
-					รทัดมาเkldnkslggjtot can be selected.By default, the firwาเf;lps[gkrmhTh elements defines an ot can be selected.By default, the fir
-					ption tt can be set can be selected.By default, the firlected.By default, the firted.By default, the first item in the drop-down list is selectedTo define a pre-selected option, add the selected attribute to the option: ktrknbkedgvterhgergergergjfdbbffmhklfmnkfmnkl
+					  On one fine summer's day in a field a Grasshopper was hopping about in a musical mood. An ant passed by bearing along with great toil an ear of corn he was taking to the nest.
+					  The grasshopper invited the ant to sit for a chat with him. But the ant refused saying that "I’m storing up food for winter". " Why don’t you do the same?" asked the ant to the grasshopper.
+					  "Pooh! Why bother about winter?" said the Grasshopper; we have got enough food at present." But the Ant went on its way and continued its toil.
+					  Finally, when winter came, the Grasshopper found itself dying of hunger, while it saw the ants distributing corn and grain from their storage.
+					  Then the Grasshopper understood that…
+					  It is best to prepare for the days of necessity. 
 					</div>
 				</div>
 			</div>
@@ -57,9 +60,6 @@
 			</div>
 			<div class="col-xl-1"> </div>
 		</div> <!--จบแถว2-->
-		<div class="row">
-			Test
-		</div>
 	</div> <!--จบตารางทั้งหน้าเว็บ-->
 	
 	
