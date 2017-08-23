@@ -1,0 +1,71 @@
+/*=== 1. General Structure ===*/
+body {
+  background-image: url("/picture/field.jpg");
+  font-family: 'Varela Round';
+}
+
+.container{
+	max-width:100%;
+}
+
+/*home header*/
+.container-fluid{
+	background : #598234;
+	opacity: 0.8;
+	
+}
+.badge{
+	background: #9acd32;
+	font-size : 48px;
+	
+}
+.badge-secondary {
+	
+}
+h1{
+	display : inline;
+	color: #FFFFFF;
+	font-size : 28px;
+	margin-left : 15px;
+}
+/*ดันช่องว่างบน*/
+.row2{
+	margin-top: 30px;
+}
+/*boxกล่องกรอกipและแสดงผล*/
+.box1{
+    background-color: #505160;
+	opacity: 0.9;
+	border-radius: 25px;
+	color:#FFFFFF;
+	font-size : 18px;
+	/*width: 700px;*/
+	height: 500px;
+    border: 25px;
+    padding: 25px 25px 25px 25px;
+    /*margin: 90px 110px;*/ /*บนล่าง ซ้ายชวา*/
+}
+.dropdown{
+	margin-left: 15px;
+	display : inline;
+}
+.box2{
+	font-size : 16px;
+	/*width: 500px;*/
+	/*height: 390px;*/
+	background-color: #333333;/*#68829E;*/
+	color:#FFFFFF;
+	border: 10px;
+    padding: 5px 10px 5px 10px;
+    margin: 15px 0; /*ขอบบนล่าง ขอบข้าง*/
+}
+
+
+
+
+
+
+
+
+
+
