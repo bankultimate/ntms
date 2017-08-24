@@ -185,7 +185,6 @@ label.form-invalid:after {
 /*header */
 .container{
 	background: #9acd32;
-	border-radius: 25px;
 }
 h1{
 	background: #598234;
@@ -199,7 +198,7 @@ p.head{
 	font-size: 22px;
 	color : #505160;
 	margin-left : 10px;
-	padding : 0 0 5px 10px;
+	padding : 0 0 0 10px;
 }
 /*end header*/
 

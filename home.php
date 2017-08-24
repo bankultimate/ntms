@@ -18,8 +18,14 @@
 
 <body>  <!--Header-->
 	<div class="container-fluid">
-		<span class="badge badge-secondary">NTMS</span>
-		<h1> Network Troubleshooting Management System</h1>
+		<div class="row">
+			<div class="col-1 col-xl-1"> </div>
+			<div class="col-10 col-xl-10">
+					<span class="badge badge-secondary">NTMS</span>
+					<h1 class="center"> Network Troubleshooting Management System</h1>
+			</div>
+			<div class="col-1 col-xl-1"> </div>
+		</div>
 	</div> <!--จบ Header-->
 	
 	<!--ตารางหน้าเว็บทั้งหมด-->

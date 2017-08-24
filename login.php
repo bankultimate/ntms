@@ -20,8 +20,14 @@
 <body>
 	<!--Header-->
 	<div class="container" style="max-width:100%">
-		<h1> NTMS </h1>
-		<p class="head"> Network Troubleshooting Management System </p>
+		<div class="row">
+			<div class="col-1 col-xl-1"></div>
+			<div class="col-10 col-xl-10">
+				<h1> NTMS </h1>
+				<p class="head"> Network Troubleshooting Management System </p>
+			</div>
+			<div class="col-1 col-xl-1"></div>
+		</div>
 	</div> <!--จบ Header-->
 	
 	
