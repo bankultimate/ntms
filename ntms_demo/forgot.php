@@ -6,7 +6,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="/ntms/css/login.css">
+	<link rel="stylesheet" href="/ntms_demo/css/login.css">
 
 	<!-- All the files that are required -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -55,7 +55,7 @@
 		<!-- end:Main Form -->
 	</div>
 	
-	<script src="/ntms/js/login.js"></script>
+	<script src="/ntms_demo/js/login.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

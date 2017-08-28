@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	
-	<link rel="stylesheet" href="/ntms/css/main.css">
+	<link rel="stylesheet" href="/ntms_demo/css/main.css">
 	<style>
 		
 	</style>
@@ -22,7 +22,7 @@
 			<div class="col-1 col-xl-1"> </div>
 			<div class="col-10 col-xl-10">
 					<span class="badge badge-secondary">NTMS</span>
-					<h1 class="center"> Network Troubleshooting Management System</h1>
+					<h1> Network Troubleshooting Management System</h1>
 			</div>
 			<div class="col-1 col-xl-1"> </div>
 		</div>
