@@ -9,11 +9,10 @@
 	<!-- Font -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" href="/ntms_demo/css/main.css">
-	<style>
-		
-	</style>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/main.css">
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>  <!--Header-->
@@ -34,17 +33,22 @@
 		<div class="row row2"> 
 			<div class="col-xl-1"> </div>
 			<div class="col-xl-5">
-				<div class="container box1"> 
-					Input your ip address : 
-					<input type="text"> 
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Command
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#">ping</a>
-							<a class="dropdown-item" href="#">telnet</a>
-							<a class="dropdown-item" href="#">show version</a>
+				<div class="container box1">
+					<div class="row">
+						<div class="col-xl-8">
+							Input ip address :
+							<input class="inbox" type="text">
+						</div>
+						<div class="col-xl-4 x1">	
+							<div class="form-group">
+								<select class="form-control command" id="exampleFormControlSelect1">
+								  <option>ping</option>
+								  <option>tracert</option>
+								  <option>show version</option>
+								  <option>4</option>
+								  <option>5</option>
+								</select>
+							 </div>
 						</div>
 					</div>
 					<div class="container box2"> <!--กล่อง result แสดงผล-->
@@ -54,20 +58,54 @@
 					  Finally, when winter came, the Grasshopper found itself dying of hunger, while it saw the ants distributing corn and grain from their storage.
 					  Then the Grasshopper understood that…
 					  It is best to prepare for the days of necessity. 
-					</div>
+					</div>						
 				</div>
 			</div>
 			<!--แถว2 ครึ่งหลังกล่อง troubleshoot -->
-			<div class="col-xl-1"> </div>
-			<div class="col-xl-4"> 
+			<!--<div class="col-xl-1"> </div>-->
+			<div class="col-xl-5"> 
 				<div class="container box1"> <!--กล่อง ยิงคำสั่ง-->
-					Command Set 
+				<div class="row">
+					<div class="col-xl-9"> 
+						<h4> Use a Command Set </h4>
+					</div>
+					<div class="col-xl-3"> 
+						<input class="create" type="submit" value=" Create New" />
+					</div>
+					<table class="table">
+					  <thead>
+						<tr>
+						  <th>#</th>
+						  <th>Description</th>
+						  <th>Command list</th>
+						  <th> </th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <th scope="row">1</th>
+						  <td>basic</td>
+						  <td>ping <br\></br> telnet<br\></br> show version
+						  </td>
+						  <td> <input class="" type="submit" value="Select" /> </td>
+						</tr>
+						<tr>
+						  <th scope="row">2</th>
+						  <td>advance</td>
+						  <td>tracert <br\></br> blah <br\></br> blah <br\></br> blah
+						  </td>
+						  <td> <input class="" type="submit" value="Select" /> </td>
+						</tr>
+					  </tbody>
+					</table> 
 				</div>
 			</div>
 			<div class="col-xl-1"> </div>
 		</div> <!--จบแถว2-->
 	</div> <!--จบตารางทั้งหน้าเว็บ-->
 	
+	
+	<script src="js/main.js"></script>
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

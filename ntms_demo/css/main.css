@@ -1,6 +1,6 @@
 /*=== 1. General Structure ===*/
 body {
-  background-image: url("/ntms_demo/picture/field.jpg");
+  background-image: url("/ntms/ntms_demo/picture/field.jpg");
   font-family: 'Varela Round';
 }
 
@@ -11,7 +11,7 @@ body {
 /*home header*/
 .container-fluid{
 	background : #598234;
-	opacity: 0.8;
+	opacity: 0.85;
 	
 }
 .badge{
@@ -22,7 +22,6 @@ body {
 
 h1{
 	display : inline;
-	
 	color: #FFFFFF;
 	font-size : 28px;
 	margin-left : 15px;
@@ -43,11 +42,14 @@ h1{
     border: 25px;
     padding: 25px 25px 25px 25px;
     /*margin: 90px 110px;*/ /*บนล่าง ซ้ายชวา*/
+	
 }
-.dropdown{
-	margin-left: 15px;
-	display : inline;
+
+
+.command{
+	width: 150px;
 }
+
 .box2{
 	font-size : 16px;
 	/*width: 500px;*/
@@ -59,10 +61,92 @@ h1{
     margin: 15px 0; /*ขอบบนล่าง ขอบข้าง*/
 }
 
+/*กล่อง drag*/
+.table-layout tr td {
+/*border: 1px dashed #ddd !important;*/
+padding: 15px;
+}
 
+.table-panel tr td {
+border: 2px dashed #eee !important;
+padding: 15px;
+}
 
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus {
+padding: 5px 15px;
+font-size: 15px;
+line-height: 1.42857;
+color: #2C3E50;
+background-color: #FFF;
+background-image: none;
+border: 1px solid #DCE4EC;
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
 
+[contenteditable="true"]:hover {
+outline: 2px dashed #0090D2;
+}
 
+.SizeChooser {
+margin: 5px 10px;
+position: relative;
+text-align: center;
+}
+
+.SizeChooser table {
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+
+.SizeChooser td {
+	cursor: pointer;
+	height: 10px;
+	min-width: 10px;
+	line-height: 10px;
+	/*border: 1px solid #CCC !important;*/
+	padding: 0 !important;
+}
+.SizeChooser td button {
+	height: 12px!important;
+	width: 10px!important;
+}
+
+.SizeChooser-hover {
+	background-color: red;
+}
+
+.SizeChooser-selected {
+	border: 1px #333 solid !important;
+}
+
+.SizeChooser input {
+	width: 40px;
+}
+
+.ui-selecting {
+	background: #FECA40;
+}
+
+.ui-selected {
+	background: #F39814; color: white;
+}
+
+td.empty {
+	padding: 15px !important;
+}
+.draggable {
+	cursor: pointer;
+	margin-right: 10px;
+margin-top: 5px;
+}
+
+.si-glyph{
+	width:16px;
+	height:16px;
+}
 
 
 

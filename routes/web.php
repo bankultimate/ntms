@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{user}', function ($user) {
-    return 'user = ' .$user;
+Route::get('/hello', function() {
+	return "Hello Laravel";
 });
 
-Route::get('/home', function () {
-    return "Home";
-});
-
+Route::get('movie','MovieController@index'
+);
+Route::get('movieview','MovieController@view'
+);
