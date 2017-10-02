@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
+
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/','CommandController@index');
 
 Route::get('/hello', function() {
 	return "Hello Laravel";
@@ -50,3 +52,9 @@ Route::get('cmdPost/{json}','TestController@cmdPost');
 Route::get('newloginpage','CommandController@index');
 
 Route::get('newforgotpage','CommandController@newforgot');
+
+/*เพิ่มมาใหม่*/
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

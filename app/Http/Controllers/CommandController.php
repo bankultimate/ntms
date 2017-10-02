@@ -9,12 +9,11 @@ use Illuminate\Http\Request;
 class CommandController extends Controller
 {
 		function __construct()
-		
-		
 		{
 			/*
 				Check Authen
 			*/
+			$this->middleware('auth');
 		}
 		
 		/* localhost/ntms/public/commandview -> commandview, CommandController@view */
