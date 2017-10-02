@@ -1,6 +1,6 @@
 /*=== 1. General Structure ===*/
 body {
-  background-image: url("/ntms/ntms_demo/picture/field.jpg");
+  background-image: url("ntms/ntms_demo/picture/field.jpg");
   font-family: 'Varela Round';
 }
 
@@ -74,16 +74,16 @@ padding: 15px;
 
 [contenteditable="true"]:active,
 [contenteditable="true"]:focus {
-padding: 5px 15px;
-font-size: 15px;
-line-height: 1.42857;
-color: #2C3E50;
-background-color: #FFF;
-background-image: none;
-border: 1px solid #DCE4EC;
-border-radius: 4px;
-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
-transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+	padding: 5px 15px;
+	font-size: 15px;
+	line-height: 1.42857;
+	color: #2C3E50;
+	background-color: #FFF;
+	background-image: none;
+	border: 1px solid #DCE4EC;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
 
 [contenteditable="true"]:hover {
@@ -91,9 +91,9 @@ outline: 2px dashed #0090D2;
 }
 
 .SizeChooser {
-margin: 5px 10px;
-position: relative;
-text-align: center;
+	margin: 5px 10px;
+	position: relative;
+	text-align: center;
 }
 
 .SizeChooser table {
@@ -139,8 +139,8 @@ td.empty {
 }
 .draggable {
 	cursor: pointer;
-	margin-right: 10px;
-margin-top: 5px;
+	margin-right: 10px;	
+	margin-top: 5px;
 }
 
 .si-glyph{

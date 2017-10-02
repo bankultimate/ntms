@@ -1,0 +1,231 @@
+/*=== 1. General Structure ===*/
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /*font-weight: 3000;*/
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  /*font-weight: 300;*/
+}
+body ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  /*font-weight: 300;*/
+}
+body :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  opacity: 1;
+  /*font-weight: 300;*/
+}
+body ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  opacity: 1;
+  /*font-weight: 300;*/
+}
+body :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  /*font-weight: 300;*/
+}
+
+.container{
+	max-width:100%;
+}
+
+/*home header*/
+.container-fluid{
+	/*background : #598234;*/
+	/*opacity: 0.85;*/
+    /*background: #71B238;
+    background: -webkit-linear-gradient(top left, #71B238 0%, #DEE79C 100%);
+    background: linear-gradient(to bottom right, #71B238 0%, #DEE79C 100%);
+	position: absolute;*/
+	background-image: url('/ntms/public/picture/brick.jpg');
+	left: 0;
+	width: 100%;
+}
+
+.head{
+	background : #505050;
+	opacity : 0.85;
+
+}
+
+.badge{
+	background: #A6CB45;
+	font-size : 50px;
+	/*color: #828277;*/
+}
+
+h1{
+	display : inline;
+	color: #FFFFFF;
+	font-size : 28px;
+	margin-left : 15px;
+	font-weight : 800;
+}
+/*ดันช่องว่างบน*/
+.row2{
+	margin-top: 50px;
+}
+/*boxกล่องกรอกipและแสดงผล*/
+.box1{
+    background: #555555;
+    background: -webkit-linear-gradient(top left, #555555 0%, #8a949b 100%);
+    background: linear-gradient(to bottom right, #555555 0%, #8a949b 100%);
+	/*opacity: 0.9;*/
+	border-radius: 25px;
+	color:#FFFFFF;
+	font-size : 18px;
+	/*width: 700px;*/
+    border: 25px;
+    padding: 25px 25px 25px 25px;
+    margin: 0 0 50px 0;/*บนล่าง ซ้ายชวา*/
+	
+}
+
+
+.command{
+	/*width: 150px;*/
+}
+
+.box2{
+	font-size : 18px;
+	/*width: 500px;*/
+	opacity: 0.9;
+	height: 250px;
+	background-color: #333333;/*#68829E;*/
+	color:#FFFFFF;
+	border: 10px;
+    padding: 5px 10px 5px 10px;
+    margin: 15px 0; /*ขอบบนล่าง ขอบข้าง*/
+	white-space: wrap;
+	overflow: scroll;
+	
+}
+
+/*กล่อง drag*/
+.table-layout tr td {
+/*border: 1px dashed #ddd !important;*/
+padding: 15px;
+}
+
+.table-panel tr td {
+border: 2px dashed #eee !important;
+padding: 15px;
+}
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus {
+padding: 5px 15px;
+font-size: 15px;
+/*line-height: 1.42857;*/
+color: #2C3E50;
+background-color: #FFF;
+background-image: none;
+border: 1px solid #DCE4EC;
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+[contenteditable="true"]:hover {
+outline: 2px dashed #0090D2;
+}
+
+.SizeChooser {
+margin: 5px 10px;
+position: relative;
+text-align: center;
+}
+
+.SizeChooser table {
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+
+.SizeChooser td {
+	cursor: pointer;
+	height: 10px;
+	min-width: 10px;
+	line-height: 10px;
+	/*border: 1px solid #CCC !important;*/
+	padding: 0 !important;
+}
+.SizeChooser td button {
+	height: 12px!important;
+	width: 10px!important;
+}
+
+.SizeChooser-hover {
+	background-color: red;
+}
+
+.SizeChooser-selected {
+	border: 1px #333 solid !important;
+}
+
+.SizeChooser input {
+	width: 40px;
+}
+
+.ui-selecting {
+	background: #FECA40;
+}
+
+.ui-selected {
+	background: #F39814; color: white;
+}
+
+td.empty {
+	padding: 15px !important;
+}
+.draggable {
+	cursor: pointer;
+	margin-right: 10px;
+margin-top: 5px;
+}
+
+.si-glyph{
+	width:16px;
+	height:16px;
+}
+
+/*ปุ่มcreate new*/
+.btn-primary{
+	background-color : #FFFFFF;
+	color: #616161;
+	border:0;
+	margin:0 0 0 0;
+}
+/*ปุ่ม Logout*/
+.btn-outline-warning{
+	border:0;
+	margin:30px 0 0 0;
+	background : #A6CB45;
+	color: #FFFFFF;
+	
+}
+/*ปุ่ม set 123*/
+h5{
+	color :#FFFFFF;	
+}
+
+/*คำว่า set123*/
+p{
+	margin:0 0 0 0;
+	border: 0 0 0 0;
+}
+
+

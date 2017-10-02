@@ -64,13 +64,16 @@
 									</div>
 									<div class="col-xl-5">
 										<select name="selectto" id="select-to" multiple="multiple" size="9" class="form-control">
+										
 										</select>
 										<a href="javascript:void(0);" id="btn-up" class="btn btn-success btn-sm">Up</a>
 										<a href="javascript:void(0);" id="btn-down" class="btn btn-success btn-sm">Down</a>
 									</div>
 								</div>
 							<br/><br/> <br/><br/>
+							<a class="btn btn-primary2" href="{{ URL::action('CommandController@home') }}" role="button"> Back </a>
 							<input class="" type="submit" value="Submit" />
+							
 							</fieldset>
 						</form>
 					</div>
@@ -81,30 +84,6 @@
 		</div>
 	</div>
 </div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	<script src="js/main.js"></script>
 	

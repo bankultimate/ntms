@@ -10,16 +10,43 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/hello', function() {
 	return "Hello Laravel";
-});
+})->middleware(CheckAge::class);
 
-Route::get('movie','MovieController@index'
-);
-Route::get('movieview','MovieController@view'
-);
+Route::get('commandview','CommandController@view');
+
+/*main part*/
+Route::get('homepage','CommandController@home');
+
+Route::get('CreateCmdSet','CommandController@create');
+
+Route::post('btCreateCmdSet','CommandController@btCreate');
+
+Route::get('editcmdset/{id}','CommandController@edit1');
+
+Route::post('btEditCmdSet','CommandController@btEdit');
+/**/
+
+Route::get('loginpage','CommandController@login');
+
+Route::get('forgotpage','CommandController@forgot');
+
+Route::get('btDelCmdSet/{id}','CommandController@delete');
+
+Route::get('view','TestController@view');
+
+Route::get('cmd/{json}','TestController@cmd');
+
+Route::get('cmdGet/{json}','TestController@cmdGet');
+
+Route::get('cmdPost/{json}','TestController@cmdPost');
+
+/*หน้าล็อคอินใหม่*/
+Route::get('newloginpage','CommandController@index');
+
+Route::get('newforgotpage','CommandController@newforgot');
