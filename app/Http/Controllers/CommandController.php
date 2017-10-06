@@ -50,7 +50,7 @@ class CommandController extends Controller
 				->get();
 			
 			/* Reture View complete or return Status complete */
-			return  view('home', ['num2'=>$drop,'buttons'=>$buttons ,'contents'=>$contents ]);
+			return  view('homepage', ['num2'=>$drop,'buttons'=>$buttons ,'contents'=>$contents ]);
 		}
 		
 		public function create()
@@ -137,7 +137,8 @@ class CommandController extends Controller
 		/*หน้าlogin ใหม่*/
 		public function index()
 		{
-			return view('index');
+			return redirect()
+				->action('CommandController@home');
 		}
 		
 		/*หน้าforgot ใหม่*/
@@ -148,13 +149,14 @@ class CommandController extends Controller
 		
 		public function login()
 		{
-			return view('login');
+			return view('auth/login');
 		}
 		
 		public function forgot()
 		{
 			return view('forgot');
 		}
+		
 		
 		public function delete($id)
 		{

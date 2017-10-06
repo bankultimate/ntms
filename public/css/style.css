@@ -46,9 +46,13 @@ body :-ms-input-placeholder {
 }
 
 .wrapper {
-  background: #71B238;
+  /*background: #71B238;
   background: -webkit-linear-gradient(top left, #71B238 0%, #DEE79C 100%);
-  background: linear-gradient(to bottom right, #71B238 0%, #DEE79C 100%);
+  background: linear-gradient(to bottom right, #71B238 0%, #DEE79C 100%);*/
+  background: -webkit-linear-gradient(left top, #7CB342, #8BC34A, #E6EE9C, #E6EE9C); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(left top, #7CB342, #8BC34A, #E6EE9C, #E6EE9C); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(left top, #7CB342, #8BC34A, #E6EE9C, #E6EE9C); /* For Fx 3.6 to 15 */
+  background: linear-gradient(to right bottom, #7CB342, #8BC34A, #E6EE9C, #E6EE9C); /* Standard syntax (must be last) */
   position: absolute;
   left: 0;
   width: 100%;
