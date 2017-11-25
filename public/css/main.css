@@ -125,7 +125,7 @@ h1{
 }
 
 .box2{
-	font-size : 16px;
+	font-size : 14px;
 	/*width: 500px;*/
 	opacity: 0.87;
 	/*border-radius: 25px;*/
@@ -133,10 +133,25 @@ h1{
 	background-color: #3D3C3A;/*#68829E;*/
 	color:#FFFFFF;
 	border: 10px;
-    /*padding: 5px 10px 5px 10px;*/
+    padding: 5px 10px 5px 10px;
     margin: 0 0 15px 0; /*ขอบบนล่าง ขอบข้าง*/
 	white-space: wrap;
 }
+
+.commandSetPre{
+	font-size : 14px;
+	/*width: 500px;*/
+	opacity: 0.87;
+	/*border-radius: 25px;*/
+	height: 400px;
+	background-color: #3D3C3A;/*#68829E;*/
+	color:#FFFFFF;
+	border: 10px;
+    padding: 5px 10px 5px 10px;
+    margin: 0 0 15px 0; /*ขอบบนล่าง ขอบข้าง*/
+	white-space: wrap;
+}
+
 .inbox{
 	/*width: 195px;*/
 }

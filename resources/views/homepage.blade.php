@@ -101,7 +101,7 @@
 											</div>
 										</div>
 									
-										<div id="cmdSetContent" class="col-xl-7 col-md-7">
+										<div class="col-xl-7 col-md-7">
 											<h4> Result : </h4>
 											<div class="container">
 												<div class="row" style="padding:0 0 10px 0;">
@@ -113,8 +113,12 @@
 														<button style="width:48%;" class="btn btn-danger" href="" role="button" id="breakCmdSet">Stop</button >
 													</div>
 												</div>
+												<div id="cmdSetContent" class="row">
+													<div class="col-xl-12 col-md-12">
+														<pre class="commandSetPre"></pre>
+													</div>
+												</div>
 											</div>
-											<pre id="cmdSetContentPre" class="box2"></pre>
 										</div>
 									</div>
 								</div>
@@ -211,7 +215,15 @@
 		var messageFormat = '';
 		var messageMethod = '';
 		var messageRef_id = '';
-		var currentCommandCmdID = -1;
+		/* Command Global Variable */
+		var currentCommandCmdID = -1; // Last command Tab that select
+		/* Command Set Global Variable */
+		var cmdSetGlobal = {
+			cmdSetCmdID:-1, // cmdID of commandSet of this user (cmdSetGlobal.cmdSetCmdID)
+			currCmdSetID:-1, // Current cmdSetID that user select (cmdSetGlobal.currCmdSetID)
+			currCmdSetASelect:-1, // Current Index of a menu that user select (cmdSetGlobal.currCmdSetASelect)
+			cmdSetBreak:false // (cmdSetGlobal.cmdSetBreak)
+		};
 		var validate = {
 			user:function(str){
 				return str.search(/^[A-Za-z]{1}[^ ]+$/g) != -1;
@@ -300,7 +312,7 @@
 							x = 0;
 							y = this.arr[i].stdOut.length;
 						}
-						console.log(x+','+y);
+						console.log('UPDATE cmdObj['+i+']('+this.arr[i].command+').updateStdOut['+x+'-'+y+']');
 						for (j=x;j<y;j++){
 							desPre.append(this.arr[i].stdOut[j%max]);
 						}
@@ -356,7 +368,7 @@
 			//desของแต่ละ set + table list ใน set
 			tableList();
 			// Auto Select first Command Set
-			$('#buttonCmdSet > a:first-child').click();
+			cmdSetGlobal.currCmdSetASelect = $('#buttonCmdSet > a:first-child').index();
 			
 			/* CLICK */
 			// Option on command list event
@@ -372,23 +384,22 @@
 				clearCommand(function(){cmdObj.clearAllCmd();});
 			});
 			$('#commandSetNav').click(function(){
-				for (i=0;i<cmdObj.arr.length;i++){
-					if (cmdObj.arr[i].command=='commandSet') {
-						currentCmdID = cmdObj.arr[i].cmdID;
-						currentTab = 'cmdSetContent';
-					}
-				}
+				$('#buttonCmdSet > a:eq('+cmdSetGlobal.currCmdSetASelect+')').click();
+				//currentCmdID = cmdSetGlobal.cmdSetCmdID;
 			});
 			$('#commandNav').click(function(){
 				currentCmdID = currentCommandCmdID;
 				cmdSelect(1);
 			});	
+			$('#buttonCmdSet > a').click(function(){
+				cmdSetGlobal.currCmdSetASelect = $(this).index();
+			});
 			
 			/* KEYDOWN */
 			//INPUT #message keydown "Enter" (code = 13) event 
 			$('input.runCommand').keydown(function(event){
 				if(event.keyCode == 13) {
-					replace1();
+					//replace1();
 				}
 			});
 		});
@@ -405,14 +416,18 @@
 						if (json.cmdID === -1) {
 							alert('Command session is full.Cann'+"'"+'t new "'+json.command+'" command.');
 						} else {
+							// Create new cmdObj at client 
 							var index = cmdObj.newCmd(command);
 							cmdObj.arr[index].cmdID = json.cmdID;
+							// Check Command Tab or Command Set
 							if ( cmdObj.arr[index].command.search(/^Tab[\d]+$/g) != -1 ) {
 								tabExist[0] = true;
 							} else if (cmdObj.arr[index].command.search('commandSet') != -1) {
+								cmdSetGlobal.cmdSetCmdID = json.cmdID;
 								tabExist[1] = true;
 							}
 							
+							// If have Command Tab1 and commandSet Already get all
 							if (tabExist[0] && tabExist[1]){
 								var tabID = 'cmd'+json.cmdID+json.command;
 								if (cmdObj.arr[index].command == 'commandSet') {
@@ -466,6 +481,7 @@
 		
 		function getUserCommand(activeTabID){
 			if (validate.user(user)) {
+				console.log('[GETUSERCMD]'+user);
 				var url = 'http://172.16.41.201/ntms/public/cmd/getallcmd/'+user;
 				xRequest(url,function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -479,20 +495,26 @@
 							cmdObj.arr[j].cmdID = json.myID[i];
 							cmdObj.arr[j].message.history = json.myHistory[i];
 							cmdObj.arr[j].tabID = 'cmd'+json.myID[i]+json.myCommand[i];
+							cmdObj.arr[j].max = json.max;
 							/* Set Tab Exist State */
 							if (cmdObj.arr[j].command.search(/^Tab[\d]+$/g) != -1) {
 								tabExist[0] = true;
 							} else if (cmdObj.arr[j].command.search('commandSet') != -1) {
+								cmdSetGlobal.cmdSetCmdID = json.myID[i];
 								tabExist[1] = true;
 							}
 						}
 						if (tabExist[0] && tabExist[1]) {
+							console.log('[TABREFRESH]');
 							tabCommandRefresh(json,activeTabID);
-						} else if (tabExist[0] && !tabExist[1]) {
-							newCommand(-1);
 						} else if (!tabExist[0] && tabExist[1]) {
+							console.log('[NEWTAB]');
+							newCommand(-1);
+						} else if (tabExist[0] && !tabExist[1]) {
+							console.log('[NEWCMDSET]');
 							newCommand('commandSet');
 						} else {
+							console.log('[NEW-TAB&CMDSET]');
 							newCommand(-1);
 							newCommand('commandSet');
 						}
@@ -519,7 +541,10 @@
 					if (json.stdOut.length != 0){
 						cmdObj.clearCountLIndex(cmdID);
 						// Scroll Bar
-						desPre.scrollTop(document.getElementById(tabID+'Pre').scrollHeight);
+						console.log(tabID);
+						if (document.getElementById(tabID+'Pre').scrollHeight > $('#'+tabID+'Pre').height()){
+							desPre.scrollTop(document.getElementById(tabID+'Pre').scrollHeight);
+						}
 					}
 					
 					var index = cmdObj.getLastIndex(cmdID);
@@ -535,6 +560,7 @@
 		}
 		
 		function breakCommand(cmdID){
+			cmdSetGlobal.cmdSetBreak = true;
 			var json = JSON.stringify({cmdID:cmdID,user:user});
 			var url = 'http://172.16.41.201/ntms/public/cmd/break/'+json;
 			xRequest(url,function() {
@@ -647,19 +673,28 @@
 			var za = DupPaRam.length;
 			for (l = 0; l < za; l++){
 				var subParam = DupPaRam[l].substring(1,DupPaRam[l].length -1);
-				result += '<div class="row"><div class="col-xl-4 col-md-5" style="padding:0;">' + '<p>' + subParam+ ' :' + '</p></div><div class="col-xl-8 col-md-7" style="padding:0;">' +
-							'<input class="inbox" type="text" style="width:100%;" id="' +'commandSet'+subParam + '" value=""></div>' +
-							'</div>';
+				result += '<div class="row"><div class="col-xl-4 col-md-5" style="padding:0;">' + '<p>' + subParam+ ' :' + '</p></div><div class="col-xl-8 col-md-7" style="padding:0;">';
+				subParam = subParam.replace(/ /gm,'');
+				result += '<input class="inbox commandSetInput" type="text" style="width:100%;" id="' +'commandSet'+subParam + '" value="" onkeydown="enterToRunCmdSet(event)"></div></div>';
 			}
 			result += '</div>';
 			$("#inputForCMD2").html(result);
 			$("#btDelCmdSet").attr("onclick",'SureToDelete(' + id +',"' + name +'")');
 			$("#EditCmdSet").attr("onclick",'btEdit(' + id + ')');
 			$("#runCmdSet").attr("onclick",'runCommandSet('+id+')');
+			cmdSetGlobal.currCmdSetID = id;
+		}
+		
+		function enterToRunCmdSet(event){
+			var key = event.keyCode;
+			if (key == 13){
+				runCommandSet(cmdSetGlobal.currCmdSetID);
+			}
 		}
 		
 		function runCommandSet(cmdSetID){
 			// Find cmdSetObj
+			cmdSetGlobal.cmdSetBreak = false;
 			var cmdSetObj = {};
 			for (i=0;i<cmdSetArr.length;i++){
 				if(cmdSetArr[i].id==cmdSetID){
@@ -693,34 +728,34 @@
 				//sendCommand();
 			}
 			for (i=0;i<messageArr.length;i++){
-				updateCurrentMessage(messageArr[i]);
-				console.log(message);
+				var str = updateCurrentMessage(messageArr[i]);
+				console.log('Prepair '+i+'."'+str+'"');
 			}
 			sendCommandSet(0,messageArr);
 		}
 		
 		function sendCommandSet(i,messageArr){
-			console.log('SEND'+i);
-			if (i<messageArr.length) {
-				var cmdID = currentCmdID;
+			if (i<messageArr.length && !cmdSetGlobal.cmdSetBreak) {
+				console.log('SEND['+i+'] '+messageArr[i].name);
+				var cmdID = cmdSetGlobal.cmdSetCmdID;
 				var json = JSON.stringify({cmdID:cmdID,user:user});
 				var url = 'http://172.16.41.201/ntms/public/cmd/cmdstate/'+json;
 				xRequest(url,function() {
 					if (this.readyState == 4 && this.status == 200) {
 						var json = JSON.parse(this.responseText);
 						if (json.state){
-							updateCurrentMessage(messageArr[i]);
+							var msg = updateCurrentMessage(messageArr[i]);
 							var obj = {};
 							cmdObj.end(cmdID,json.end);
 							if (json.end) {
 								//RUN
-								var arr = message.split(" ");
+								var arr = msg.split(" ");
 								var command = arr.shift();
-								obj = {command:command,args:arr,cmdID:cmdID,user:user,method:messageMethod,refid:messageRef_id};//user is temp when on product must delete
+								obj = {command:command,args:arr,cmdID:cmdID,user:user,method:messageArr[i].method,refid:messageArr[i].ref_id};//user is temp when on product must delete
 								url = 'http://172.16.41.201/ntms/public/cmd/run/'+JSON.stringify(obj);
 							}else{
 								//SET
-								obj = {cmdID:cmdID,message:message,user:user};
+								obj = {cmdID:cmdID,message:msg,user:user};
 								url = 'http://172.16.41.201/ntms/public/cmd/set/'+JSON.stringify(obj);
 							}
 							xRequest(url,function() {
@@ -741,7 +776,7 @@
 		}
 		
 		function getCommandSet(i,messageArr,cmdID,clientIndex){
-			var tabID = currentTab;
+			var tabID = cmdObj.tabID(cmdID);
 			var json = JSON.stringify({cmdID:cmdID,clientIndex:clientIndex});
 			var url = 'http://172.16.41.201/ntms/public/cmd/get/'+json;
 			xRequest(url,function() {
@@ -753,7 +788,10 @@
 					
 					if (json.stdOut.length != 0){
 						cmdObj.clearCountLIndex(cmdID);
-						desPre.scrollTop(document.getElementById(tabID+'Pre').scrollHeight);
+						console.log(tabID+'Pre');
+						if (document.getElementById(tabID+'Pre').scrollHeight > $('#'+tabID+'Pre').height()){
+							desPre.scrollTop(document.getElementById(tabID+'Pre').scrollHeight);
+						}
 					}
 					
 					var index = cmdObj.getLastIndex(cmdID);
@@ -797,21 +835,16 @@
 		}
 		
 		function updateCurrentMessage(messageArr){
-			messageCmd = messageArr.name;
-			messageParam = messageArr.param;
-			messageFormat = messageArr.format;
-			messageMethod = messageArr.method;
-			messageRef_id = messageArr.ref_id;
-			var res = messageFormat.replace("[CMD]", messageCmd);
-			if (messageParam != ''){
-				var paramArr = messageParam.split("|");
+			var res = messageArr.format.replace("[CMD]", messageArr.name);
+			if (messageArr.param != ''){
+				var paramArr = messageArr.param.split("|");
 				l = paramArr.length;
 				for (k = 0; k < l; k++) {
-					var subParam = 'commandSet'+paramArr[k].substring(1,paramArr[k].length -1);
+					var subParam = ('commandSet'+paramArr[k].substring(1,paramArr[k].length -1)).replace(/ /gm,'');
 					res = res.replace(paramArr[k], document.getElementById(subParam).value);
 				}
 			}
-			message = res;
+			return res;
 		}
 		
 		/* Command Tab Script */
@@ -850,9 +883,11 @@
 				for (i = 0;i<l;i++) {
 					var subParam = param[i].substring(1,param[i].length -1);
 					output += '<div class="row"><div class="col-xl-1 col-md-1"></div>' +
-						'<div class="col-xl-3 col-md-3" style="padding:5px 0 0 0;">' + subParam + ' : </div>' +
+						'<div class="col-xl-3 col-md-3" style="padding:5px 0 0 0;">' + subParam + ' : </div>';
+					subParam = subParam.replace(/ /gm,'');
+					output += 
 						'<div class="col-xl-8 col-md-8" style="padding:5px 0 0 20px;">'+
-							'<input class="inbox runCommand" type="text" id="' + 'command'+subParam + '" value="" onkeydown="enterToSend(event)">' +
+							'<input class="inbox runCommand" type="text" id="' + 'command'+subParam + '" value="" onkeydown="enterToRunCmd(event)">' +
 						'</div>'+
 					'</div>';
 				}
@@ -871,7 +906,7 @@
 			$('#temp').html('');
 		}
 		
-		function enterToSend(event){
+		function enterToRunCmd(event){
 			var key = event.keyCode;
 			if (key == 13){
 				replace1();
@@ -883,8 +918,9 @@
 			$('#cmdNav').html('');
 			$('#cmdContent').html('');
 			for (i=0;i<json.length;i++) {
+				var tabID = '';
 				if ( json.myCommand[i].search(/^Tab[\d]+$/g) != -1 ) {
-					var tabID = 'cmd'+json.myID[i]+json.myCommand[i];
+					tabID = 'cmd'+json.myID[i]+json.myCommand[i];
 					/* Nav Refresh */
 					var nav = '<li>'+
 						'<a class="tab bottom" href="#' + tabID + '" data-toggle="tab" onclick="tabCommandActiveState($(this))" style="border-radius: 8px 8px 0 0;">'+ json.myCommand[i] + '</a>'+
@@ -896,6 +932,10 @@
 						'<pre id="'+tabID+'Pre" style="height:270px;"></pre>'+
 					'</div>';
 					$('#cmdContent').append(content);
+				} else if ( json.myCommand[i].search("commandSet") != -1 ){
+					tabID = 'cmd'+json.myID[i]+json.myCommand[i];
+					$('#cmdSetContent > div:first-child').attr("id",tabID)
+					$('#cmdSetContent > div > pre').attr("id",tabID+'Pre')
 				}
 			}
 			$('#cmdNav > li:first-child').addClass("active");
@@ -941,7 +981,7 @@
 				var paramArr = messageParam.split("|");
 				l = paramArr.length;
 				for (i = 0; i < l; i++) {
-					var subParam = 'command'+paramArr[i].substring(1,paramArr[i].length -1);
+					var subParam = 'command'+paramArr[i].substring(1,paramArr[i].length -1).replace(/ /gm,'');
 					res = res.replace(paramArr[i], document.getElementById(subParam).value);
 				}
 			}
