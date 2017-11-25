@@ -61,7 +61,7 @@
 										<!-- div แสดงผล -->
 									</div>
 									<!-- end Tab in Tab กล่อง result แสดงผล-->
-									<button id="btCopy" onclick="myFunction()" class="btn btn-primary" > Copy </button>
+									<button id="btCopy" onclick="copyCmd()" class="btn btn-primary" > Copy </button>
 									<div id="temp"></div>
 								</div>
 							</div>
@@ -342,12 +342,6 @@
 			setTimeoutLIndex:function(cmdID){
 				var i = this.findI(cmdID);
 				this.arr[i].indexTimeout = this.getMaxTimeout;
-			},
-			clearAllCmd:function(){
-				this.arr = [];
-				currentCmdID = -1;
-				currentTab = '';
-				getUserCommand(-1);
 			}
 		};
 		
@@ -381,15 +375,23 @@
 			$('#t1stopcmd').click(function(){breakCommand(currentCmdID);});
 			$('#breakCmdSet').click(function(){breakCommand(currentCmdID);});
 			$('#bCommandTabClear').click(function(){
-				clearCommand(function(){cmdObj.clearAllCmd();});
+				clearCommand();
 			});
 			$('#commandSetNav').click(function(){
 				$('#buttonCmdSet > a:eq('+cmdSetGlobal.currCmdSetASelect+')').click();
 				//currentCmdID = cmdSetGlobal.cmdSetCmdID;
 			});
 			$('#commandNav').click(function(){
+				console.log('commandNav CLICK');
 				currentCmdID = currentCommandCmdID;
-				cmdSelect(1);
+				var i = cmdObj.findI(currentCommandCmdID);
+				setTimeout(function(){
+					//console.log('timeout');
+					$('#a'+cmdObj.arr[i].tabID).click();
+					//$('#a'+cmdObj.arr[i].tabID).parent().addClass('active');
+					$('#'+cmdObj.arr[i].tabID).addClass('active in');
+				},10);
+				
 			});	
 			$('#buttonCmdSet > a').click(function(){
 				cmdSetGlobal.currCmdSetASelect = $(this).index();
@@ -421,6 +423,7 @@
 							cmdObj.arr[index].cmdID = json.cmdID;
 							// Check Command Tab or Command Set
 							if ( cmdObj.arr[index].command.search(/^Tab[\d]+$/g) != -1 ) {
+								currentCommandCmdID = json.cmdID;
 								tabExist[0] = true;
 							} else if (cmdObj.arr[index].command.search('commandSet') != -1) {
 								cmdSetGlobal.cmdSetCmdID = json.cmdID;
@@ -498,6 +501,7 @@
 							cmdObj.arr[j].max = json.max;
 							/* Set Tab Exist State */
 							if (cmdObj.arr[j].command.search(/^Tab[\d]+$/g) != -1) {
+								currentCommandCmdID = json.myID[i];
 								tabExist[0] = true;
 							} else if (cmdObj.arr[j].command.search('commandSet') != -1) {
 								cmdSetGlobal.cmdSetCmdID = json.myID[i];
@@ -577,14 +581,14 @@
 			});
 		}
 		
-		function clearCommand(callback){
+		function clearCommand(){
 			var url = 'http://172.16.41.201/ntms/public/cmd/clearallcmd/'+user;
 			xRequest(url,function() {
 				if (this.readyState == 4 && this.status == 200) {
 					var json = JSON.parse(this.responseText);
 					if (json.length == 0){
-						callback();
 						alert('Clear tab success!');
+						location.reload();
 					}else{
 						alert('Clear tab un-success!');
 					}
@@ -897,13 +901,18 @@
 		}
 		
 		//copy button
-		function myFunction(preID) {
+		function copyCmd(preID) {
+			//window.prompt("Copy to clipboard: Ctrl+C, Enter", $('#'+preID).html());
 			$('#temp').html('<input id="copy" type="text" value="">');
-			$('#copy').val($('#'+preID).text());
+			$('#copy').val($('#'+preID).html());
 			var copyText = document.getElementById("copy");
 			copyText.select();
 			document.execCommand("Copy");
 			$('#temp').html('');
+			/*var text = document.getElementById(preID).innerHTML;
+			text.select();
+			document.execCommand("Copy");*/
+			
 		}
 		
 		function enterToRunCmd(event){
@@ -923,7 +932,7 @@
 					tabID = 'cmd'+json.myID[i]+json.myCommand[i];
 					/* Nav Refresh */
 					var nav = '<li>'+
-						'<a class="tab bottom" href="#' + tabID + '" data-toggle="tab" onclick="tabCommandActiveState($(this))" style="border-radius: 8px 8px 0 0;">'+ json.myCommand[i] + '</a>'+
+						'<a id="a'+tabID+'" class="tab bottom" href="#' + tabID + '" data-toggle="tab" onclick="tabCommandActiveState($(this))" style="border-radius: 8px 8px 0 0;">'+ json.myCommand[i] + '</a>'+
 						'</li>';
 					$('#cmdNav').append(nav);
 					/* Content Refresh */
@@ -965,7 +974,7 @@
 					currentCmdID = userObj.myID[i];
 					currentCommandCmdID = currentCmdID;
 					currentTab = 'cmd'+userObj.myID[i]+userObj.myCommand[i];
-					$('#btCopy').attr('onclick',"myFunction('"+currentTab+"Pre')");
+					$('#btCopy').attr('onclick',"copyCmd('"+currentTab+"Pre')");
 					setTimeout(function(){
 						$('#'+currentTab+' > pre').scrollTop(document.getElementById(currentTab+'Pre').scrollHeight);
 					},500);
