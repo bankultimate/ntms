@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class CommandController extends Controller
 {
@@ -134,6 +137,31 @@ class CommandController extends Controller
 			return redirect()
 				->action('CommandController@home');
 		}
+		
+		//หน้า change password
+		public function PassChange()
+		{  
+			return view('changePass');
+		}
+
+		public function btChange(Request $request)
+		{  
+			$id = Auth::id();
+			$email = $request->input('email');
+			$password = $request->input('password');
+			$password_confirmation = $request->input('password_confirmation');
+			if ($password === $password_confirmation)
+			{	
+				$user = User::findOrFail($id);
+				$user->fill([
+					'password' => Hash::make($password)
+				])->save();
+			}
+			return redirect()
+				->action('CommandController@home');
+		}
+		
+		
 		/*หน้าlogin ใหม่*/
 		public function index()
 		{
@@ -157,6 +185,10 @@ class CommandController extends Controller
 			return view('forgot');
 		}
 		
+		public function checkbox()
+		{  
+			return view('checkbox');
+		}
 		
 		public function delete($id)
 		{

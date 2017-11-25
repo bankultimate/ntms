@@ -41,6 +41,10 @@ Route::post('btCreateCmdSet','CommandController@btCreate');
 Route::get('editcmdset/{id}','CommandController@edit1');
 
 Route::post('btEditCmdSet','CommandController@btEdit');
+
+Route::get('ChangePassWord','CommandController@PassChange');
+
+Route::post('btChangePass','CommandController@btChange');
 /*
 Route::get('loginpage','CommandController@login');
 
@@ -48,13 +52,26 @@ Route::get('forgotpage','CommandController@forgot');
 */
 Route::get('btDelCmdSet/{id}','CommandController@delete');
 
+/* vvv Bank Test vvv */
 Route::get('view','TestController@view');
 
-Route::get('cmd/{json}','TestController@cmd');
+Route::get('cmd/new/{user}.{command}','ApiController@newCmd');
 
-Route::get('cmdGet/{json}','TestController@cmdGet');
+Route::get('cmd/getallcmd/{user}','ApiController@getAllCmd');
 
-Route::get('cmdPost/{json}','TestController@cmdPost');
+Route::get('cmd/clearallcmd/{user}','ApiController@clearAllCmd');
+
+Route::get('cmd/run/{json}','ApiController@runCmd');
+
+Route::get('cmd/get/{json}','ApiController@getCmd');
+
+Route::get('cmd/set/{json}','ApiController@setCmd');
+
+Route::get('cmd/break/{json}','ApiController@breakCmd');
+
+// {"cmdID":0,"user":"user_example"}
+Route::get('cmd/cmdstate/{json}','ApiController@stateCmd');
+/* ^^^ Bank Test ^^^ */
 
 /*หน้าล็อคอินใหม่*/
 /*Route::get('newloginpage','CommandController@index');
@@ -62,3 +79,4 @@ Route::get('cmdPost/{json}','TestController@cmdPost');
 Route::get('newforgotpage','CommandController@newforgot');
 
 /*เพิ่มมาใหม่*/
+Route::get('checkbox','CommandController@checkbox');

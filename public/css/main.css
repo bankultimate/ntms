@@ -54,22 +54,23 @@ body :-ms-input-placeholder {
     /*background: linear-gradient(to top left,#FEFCD7, #71B238 ); /* Standard syntax (must be last) */
 	position: absolute;
 	background-image: url('/ntms/public/picture/bg3.jpg');
+	/*background-repeat: repeat;*/
 	width: 100%;
+	height: 100%; 
 	/*object-fit:cover;*/
-	left: 0; 
-	
+	left: 0;
 }
 
 .head{
 	background: #none;
 	/*background : #505050;*/
 	/*opacity : 0.85;*/
-
 }
 
 .badge-secondary{
 	font-size : 50px;
 	background-color:#689F38;
+	border-radius : 8px;
 	-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 15s; /* Safari 4.0 - 8.0 */
     animation-name: badge;
@@ -101,14 +102,14 @@ h1{
 }
 /*ดันช่องว่างบน*/
 .row2{
-	margin-top: 50px;
+	margin-top: 40px;
 }
 /*boxกล่องกรอกipและแสดงผล*/
 .box1{
     background: #6D6968;
-	box-shadow: 5px 5px 5px #9E9E9E;
+	box-shadow: 5px 5px 5px #8F9779;
 	opacity: 0.87;
-	border-radius: 30px;
+	border-radius:0 8px 8px 8px;
 	color:#FFFFFF;
 	font-size : 18px;
 	/*width: 700px;*/
@@ -120,27 +121,29 @@ h1{
 
 
 .command{
-	width: 180px;
+	/*width: 180px;*/
 }
 
 .box2{
-	font-size : 18px;
+	font-size : 16px;
 	/*width: 500px;*/
-	/*opacity: 0.9;*/
-	height: 250px;
+	opacity: 0.87;
+	/*border-radius: 25px;*/
+	height: 335px;
 	background-color: #3D3C3A;/*#68829E;*/
 	color:#FFFFFF;
 	border: 10px;
-    padding: 5px 10px 5px 10px;
-    margin: 15px 0; /*ขอบบนล่าง ขอบข้าง*/
+    /*padding: 5px 10px 5px 10px;*/
+    margin: 0 0 15px 0; /*ขอบบนล่าง ขอบข้าง*/
 	white-space: wrap;
-	overflow: scroll;
-	
 }
 .inbox{
-	width: 195px;
+	/*width: 195px;*/
 }
 
+.boxtab3{
+	width: 100% ;
+}
 
 /*กล่อง drag*/
 .table-layout tr td {
@@ -162,7 +165,7 @@ color: #2C3E50;
 background-color: #FFF;
 background-image: none;
 border: 1px solid #DCE4EC;
-border-radius: 4px;
+border-radius: 8px;
 box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
 transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
@@ -244,7 +247,7 @@ td.empty {
 	background : #9CAA9C;
 	color: #FFFFFF;
 	font-size: inherit;
-	border-radius: 10px;
+	border-radius: 8px;
 	-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 15s; /* Safari 4.0 - 8.0 */
     animation-name: logout;
@@ -289,4 +292,94 @@ p{
 	border: 0 0 0 0;
 }
 
+/*ปุ่ม3tab*/
+a.tab{
+	padding: 10px 10px 2px 10px; 
+	color:#6D6968; 
+	font-weight: 900;
+	font-size:20px;
+	background-color:#FFFFFF; 
+	opacity: 0.87;
+	/*border-radius: 5px;*/
+}
+.panel.with-nav-tabs .panel-heading{
+   /*padding: 5px 5px 0 5px;*/
+}
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
+}
+/********************************************************************/
+/*** PANEL DEFAULT ***/
+.with-nav-tabs.panel-default .nav-tabs > li > a,
+.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+    /*color: #777;*/
+}
+.with-nav-tabs.panel-default .nav-tabs > .open > a,
+.with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+    color: #777;
+	background-color: #ffffff;
+	border-color: transparent;
+}
+.with-nav-tabs.panel-default .nav-tabs > li.active > a,
+.with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+	color: #fff;
+	background-color: #6D6968;
+	border-color: #fff;
+	border-bottom-color: transparent;
+}
+/*จบปุ่ม3tab*/
+
+/*ปุ่ม  moretab*/
+a.bottom{
+	padding: 1px 10px 2px 10px; 
+	color:#6D6968; 
+	font-weight: 900;
+	font-size:20px;
+	background-color:#FFFFFF; 
+	opacity: 0.87;
+	/*border-radius: 5px;*/
+}
+.panel.with-nav-tabs .panel-heading{
+   /*padding: 5px 5px 0 5px;*/
+}
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
+}
+/********************************************************************/
+/*** PANEL DEFAULT ***/
+
+.with-nav-tabs.panel-default .nav-tabs > .open > a.bottom,
+.with-nav-tabs.panel-default .nav-tabs > .open > a.bottom:hover,
+.with-nav-tabs.panel-default .nav-tabs > .open > a.bottom:focus,
+.with-nav-tabs.panel-default .nav-tabs > li > a.bottom:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a.bottom:focus {
+    color: #777;
+	background-color: #ffffff;
+	border-color: transparent;
+}
+.with-nav-tabs.panel-default .nav-tabs > li.active > a.bottom,
+.with-nav-tabs.panel-default .nav-tabs > li.active > a.bottom:hover,
+.with-nav-tabs.panel-default .nav-tabs > li.active > a.bottom:focus {
+	color: #fff;
+	background-color: #3D3C3A;
+	border-color: #fff;
+	border-bottom-color: transparent;
+}
+/*จบปุ่ม moretab*/
+
+pre{
+	overflow:auto;
+	color:#ffffff;
+}
 
