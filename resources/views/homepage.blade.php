@@ -27,7 +27,7 @@
 							<div class="tab-pane in active" id="tab1default">
 								<div class="container box1">
 									<div class="row">
-										<div class="col-xl-3 col-md-3" style="padding:0 0 0 15px;">	
+										<div class="col-xl-3 col-md-3">	
 											<div class="form-group">
 												<select class="form-control command" id="exampleFormControlSelect1">
 													{{-- @foreach ($num2 as $num) --}}
@@ -36,23 +36,30 @@
 												</select>
 											</div>
 										</div>
-										<div class="col-xl-7 col-md-7" id="inputForCMD" style="padding:0 0 0 0;">
+										<div class="col-xl-7 col-md-7" id="inputForCMD">
 											
 										</div>
-										<div class="col-xl-2 col-md-2" style="padding:0 0 0 15px;">	
-											<button class="btn btn-primary" href="" role="button" id="runcmd" onclick="replace1()" style="margin:5px 0 2px 0;">Run</button>
-											<button class="btn btn-primary" href="" role="button" id="t1stopcmd" onclick="" style="margin:5px 0 2px 0;">Stop</button>
+										<div class="col-xl-2 col-md-2">	
+											<button class="btn btn-primary" href="" role="button" id="runcmd" onclick="replace1()" style="margin-right:1%;width:48%;">Run</button>
+											<button class="btn btn-danger" href="" role="button" id="t1stopcmd" onclick="" style="width:48%;">Stop</button>
 										</div>
 									</div>	
 									<div class="row">
-										<div class="col-xl-4 col-md-4">	
-											<button class="btn btn-success" type="button" id="bNewTab" style="margin:0px 10px 10px 0px;">New Tab</button>
-											<button class="btn btn-danger" type="button" id="bCommandTabClear" style="margin-bottom:10px;">Clear</button>
+										<div class="col-xl-3 col-md-3"></div>
+										<div class="col-xl-9 col-md-9">
+											<div class="panel panel-default">
+												<div class="panel-body">A Basic Panel</div>
+											</div>
 										</div>
-										<div class="col-xl-8 col-md-8"></div>
+									</div>
+									<div class="row">
+										<div class="col-xl-3 col-md-3">	
+											<button class="btn btn-success" type="button" id="bNewTab" style="margin-right:10px;width:45%;">New Tab</button>
+											<button class="btn btn-danger" type="button" id="bCommandTabClear" style="width:45%;">Clear</button>
+										</div>
 									</div>
 									<!-- Tab in Tab กล่อง result แสดงผล-->
-									<div class="panel-heading">
+									<div class="panel-heading" style="margin-top:20px;">
 										<ul class="nav nav-tabs" id="cmdNav">
 											<!-- li -->
 										</ul>
@@ -70,7 +77,7 @@
 									<div class="row all">
 										<div class="col-xl-5 col-md-5" style="padding:0 0 0 10px;"> 
 											<div class="container">
-												<div class="row">
+												<div class="row" style="background-color: rgb(33, 33, 33); padding-top: 10px; padding-bottom: 10px;">
 													<div class="col-xl-9 col-md-9"> 
 														<h4><b> Use a Command Set </b></h4>
 													</div>
@@ -78,8 +85,8 @@
 														<a class="btn btn-primary" href="{{ URL::action('CommandController@create') }}" role="button"> Create </a>
 													</div>
 												</div>
-												<div class="row" style="margin-top:20px;">  <!--แถวในกล่่อง-->
-													<div class="col-xl-4 col-md-4">
+												<div class="row" style="padding-top: 20px; background-color: rgb(97, 97, 97);">  <!--แถวในกล่่อง-->
+													<div class="col-xl-4 col-md-4" style="padding:0px;">
 														<div class="list-group" id="buttonCmdSet" role="tablist">
 															<!--รายชื่อ set1-10-->
 														</div>
@@ -90,18 +97,17 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
-													<div class="col-xl-3 col-md-3" style="padding:0px 5px 0px 15px;">
-														<a class="btn btn-primary" style="margin-top:10px;width:100%;" href="#" id="EditCmdSet" onclick="btEdit()" role="button" > Edit </a>
-													</div>
-													<div class="col-xl-3 col-md-3" style="padding:0px 15px 0px 5px;">
-														<a class="btn btn-primary" style="margin-top:10px;width:100%;" href="#" id="btDelCmdSet" role="button" onclick="SureToDelete()"> Delete </a>
+												<div class="row" style="padding: 10px; background-color: rgb(97, 97, 97);">
+													<div class="col-xl-7 col-md-7"></div>
+													<div class="col-xl-5 col-md-5" style="text-align:right;">
+														<a class="btn btn-primary" style="width:45%;" href="#" id="EditCmdSet" onclick="btEdit()" role="button" > Edit </a>
+														<a class="btn btn-danger" style="width:45%;" href="#" id="btDelCmdSet" role="button" onclick="SureToDelete()"> Delete </a>
 													</div>
 												</div>
 											</div>
 										</div>
 									
-										<div class="col-xl-7 col-md-7">
+										<div class="col-xl-7 col-md-7" style="padding-top:10px;">
 											<h4> Result : </h4>
 											<div class="container">
 												<div class="row" style="padding:0 0 10px 0;">
@@ -239,9 +245,10 @@
 			initCmd:function(){
 				return {cmdID:0,command:'',stdOut:[],lastIndex:0,max:100,end:true,indexTimeout:0,message:{history:[],current:-1,tabID:''}};
 			},
-			newCmd:function(command){
+			newCmd:function(command,cmdID){
 				var i = this.arr.push(this.initCmd()) - 1;
 				this.arr[i].command = command;	
+				this.arr[i].cmdID = cmdID;
 				return i;
 			},
 			nextCmd:function(mode){
@@ -348,6 +355,7 @@
 		$(document).ready(function(){
 			/* Global Initial Tab */
 			// Get all command session of user when document ready
+			console.log('[GLOBAL TAB INIT]');
 			getUserCommand(-1);
 			
 			/* Initial Command Tab */
@@ -370,7 +378,11 @@
 				cmdSelect($(this).attr("value"));
 			});
 			// New Tab Button event
-			$('#bNewTab').click(function(){newCommand(-1);});
+			$('#bNewTab').click(function(){
+				getUserCommand(function(){
+					newCommand(-1);
+				});
+			});
 			// Break Command
 			$('#t1stopcmd').click(function(){breakCommand(currentCmdID);});
 			$('#breakCmdSet').click(function(){breakCommand(currentCmdID);});
@@ -419,8 +431,7 @@
 							alert('Command session is full.Cann'+"'"+'t new "'+json.command+'" command.');
 						} else {
 							// Create new cmdObj at client 
-							var index = cmdObj.newCmd(command);
-							cmdObj.arr[index].cmdID = json.cmdID;
+							var index = cmdObj.newCmd(command,json.cmdID);
 							// Check Command Tab or Command Set
 							if ( cmdObj.arr[index].command.search(/^Tab[\d]+$/g) != -1 ) {
 								currentCommandCmdID = json.cmdID;
@@ -482,10 +493,17 @@
 			});
 		}
 		
-		function getUserCommand(activeTabID){
+		var tempT = {};
+		function getUserCommand(){
 			if (validate.user(user)) {
 				console.log('[GETUSERCMD]'+user);
 				var url = 'http://172.16.41.201/ntms/public/cmd/getallcmd/'+user;
+				var haveArgs = arguments.length > 0;
+				var arg0 = (function(haveArgs,args){
+					if (haveArgs) {
+						return args[0];
+					}
+				})(haveArgs,arguments);
 				xRequest(url,function() {
 					if (this.readyState == 4 && this.status == 200) {
 						var json = JSON.parse(this.responseText);
@@ -494,8 +512,7 @@
 						cmdObj.arr = [];
 						for (i=0;i<json.myCommand.length;i++){
 							/* Init cmdObj */
-							var j = cmdObj.newCmd(json.myCommand[i]);
-							cmdObj.arr[j].cmdID = json.myID[i];
+							var j = cmdObj.newCmd(json.myCommand[i],json.myID[i]);
 							cmdObj.arr[j].message.history = json.myHistory[i];
 							cmdObj.arr[j].tabID = 'cmd'+json.myID[i]+json.myCommand[i];
 							cmdObj.arr[j].max = json.max;
@@ -510,7 +527,11 @@
 						}
 						if (tabExist[0] && tabExist[1]) {
 							console.log('[TABREFRESH]');
-							tabCommandRefresh(json,activeTabID);
+							if (haveArgs){
+								tabCommandRefresh(json,arg0);
+							}else{
+								tabCommandRefresh(json);
+							}
 						} else if (!tabExist[0] && tabExist[1]) {
 							console.log('[NEWTAB]');
 							newCommand(-1);
@@ -545,7 +566,7 @@
 					if (json.stdOut.length != 0){
 						cmdObj.clearCountLIndex(cmdID);
 						// Scroll Bar
-						console.log(tabID);
+						console.log('GETSTDOUT '+tabID);
 						if (document.getElementById(tabID+'Pre').scrollHeight > $('#'+tabID+'Pre').height()){
 							desPre.scrollTop(document.getElementById(tabID+'Pre').scrollHeight);
 						}
@@ -881,16 +902,16 @@
 			messageRef_id = cmdArr[i]['ref_id'];
 			var output = '';
 			if (cmdArr[i]['param'].length != 0){
-				output = '<div class="container">';
+				output += '<div class="container" style="padding-top:5px;">';
 				var param = cmdArr[i]['param'].split("|");
 				var l = param.length;
 				for (i = 0;i<l;i++) {
 					var subParam = param[i].substring(1,param[i].length -1);
 					output += '<div class="row"><div class="col-xl-1 col-md-1"></div>' +
-						'<div class="col-xl-3 col-md-3" style="padding:5px 0 0 0;">' + subParam + ' : </div>';
+						'<div class="col-xl-3 col-md-3">' + subParam + ' : </div>';
 					subParam = subParam.replace(/ /gm,'');
 					output += 
-						'<div class="col-xl-8 col-md-8" style="padding:5px 0 0 20px;">'+
+						'<div class="col-xl-8 col-md-8">'+
 							'<input class="inbox runCommand" type="text" id="' + 'command'+subParam + '" value="" onkeydown="enterToRunCmd(event)">' +
 						'</div>'+
 					'</div>';
@@ -923,7 +944,7 @@
 		}
 		
 		// Refresh current tab of user that no timeout
-		function tabCommandRefresh(json,activeTabID){
+		function tabCommandRefresh(json){
 			$('#cmdNav').html('');
 			$('#cmdContent').html('');
 			for (i=0;i<json.length;i++) {
@@ -932,7 +953,7 @@
 					tabID = 'cmd'+json.myID[i]+json.myCommand[i];
 					/* Nav Refresh */
 					var nav = '<li>'+
-						'<a id="a'+tabID+'" class="tab bottom" href="#' + tabID + '" data-toggle="tab" onclick="tabCommandActiveState($(this))" style="border-radius: 8px 8px 0 0;">'+ json.myCommand[i] + '</a>'+
+						'<a id="a'+tabID+'" class="tab bottom" href="#' + tabID + '" data-toggle="tab" onclick="tabCommandActiveState($(this))" style="border-radius: 6px 6px 0 0;">'+ json.myCommand[i] + '</a>'+
 						'</li>';
 					$('#cmdNav').append(nav);
 					/* Content Refresh */
@@ -947,23 +968,29 @@
 					$('#cmdSetContent > div > pre').attr("id",tabID+'Pre')
 				}
 			}
-			$('#cmdNav > li:first-child').addClass("active");
-			//currentCmdID = json.myID[0];
-			if (activeTabID != -1){
-				$('#cmdNav > li > a[href='+"'#"+activeTabID+"'"+']').click();
-				$('#'+activeTabID).addClass('active in');
-			} 
-			// IF activeTabID == -1 set Tab1 Active
-			if (activeTabID == -1){
-				for (i=0;i<cmdObj.arr.length;i++){
-					if (cmdObj.arr[i].command == 'Tab1'){
-						$('#cmdNav > li > a[href='+"'#"+cmdObj.arr[i].tabID+"'"+']').click();
-						$('#'+cmdObj.arr[i].tabID).addClass('active in');
-						break;
-					}
+			//$('#cmdNav > li:first-child').addClass("active");
+			cmdObj.getAllCommand();
+			if (arguments.length > 1){
+				if (typeof arguments[1] == 'number' || typeof arguments[1] == 'string') {
+					var activeTabID = arguments[1];
+					// IF activeTabID == -1 set Tab1 Active
+					if (activeTabID == -1){
+						for (i=0;i<cmdObj.arr.length;i++){
+							if (cmdObj.arr[i].command == 'Tab1'){
+								$('#cmdNav > li > a[href='+"'#"+cmdObj.arr[i].tabID+"'"+']').click();
+								$('#'+cmdObj.arr[i].tabID).addClass('active in');
+								break;
+							}
+						}
+					}else{
+						$('#cmdNav > li > a[href='+"'#"+activeTabID+"'"+']').click();
+						$('#'+activeTabID).addClass('active in');
+					} 
+				} else if (typeof arguments[1] == 'function'){
+					var callback = arguments[1];
+					callback();
 				}
 			}
-			cmdObj.getAllCommand();
 		}
 		
 		function tabCommandActiveState(obj){

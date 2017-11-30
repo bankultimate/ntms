@@ -74,9 +74,11 @@
 									</div>
 								</div>
 							<br/><br/>
-							<input class="btn btn-pri mary" id="send" type="button" onclick="btEdit()" value="Submit" />
-							<a class="btn btn-primary" href="{{ URL::action('CommandController@home') }}" role="button"> Back </a>
-							<input type="hidden" name="IdCMDSet" value="{{ $IdCMDSet }}"/>
+							<div style="width:30%">
+								<a class="btn btn-primary" href="#" id="send" type="button" onclick="btEdit()" style="width:45%;">Submit</a>
+								<a class="btn btn-danger" href="{{ URL::action('CommandController@home') }}" role="button"  style="width:45%;"> Back </a>
+								<input type="hidden" name="IdCMDSet" value="{{ $IdCMDSet }}"/>
+							</div>
 							{{ csrf_field() }}
 							</fieldset>
 						</form>
