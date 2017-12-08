@@ -44,14 +44,14 @@
 											<button class="btn btn-danger" href="" role="button" id="t1stopcmd" onclick="" style="width:48%;">Stop</button>
 										</div>
 									</div>	
-									<div class="row">
+									<!--div class="row">
 										<div class="col-xl-3 col-md-3"></div>
 										<div class="col-xl-9 col-md-9">
 											<div class="panel panel-default">
 												<div class="panel-body">A Basic Panel</div>
 											</div>
 										</div>
-									</div>
+									</div-->
 									<div class="row">
 										<div class="col-xl-3 col-md-3">	
 											<button class="btn btn-success" type="button" id="bNewTab" style="margin-right:10px;width:45%;">New Tab</button>
@@ -98,8 +98,8 @@
 													</div>
 												</div>
 												<div class="row" style="padding: 10px; background-color: rgb(97, 97, 97);">
-													<div class="col-xl-7 col-md-7"></div>
-													<div class="col-xl-5 col-md-5" style="text-align:right;">
+													<div class="col-xl-6 col-md-6"></div>
+													<div class="col-xl-6 col-md-6" style="text-align:right;">
 														<a class="btn btn-primary" style="width:45%;" href="#" id="EditCmdSet" onclick="btEdit()" role="button" > Edit </a>
 														<a class="btn btn-danger" style="width:45%;" href="#" id="btDelCmdSet" role="button" onclick="SureToDelete()"> Delete </a>
 													</div>
