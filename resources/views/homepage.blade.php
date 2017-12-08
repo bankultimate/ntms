@@ -133,51 +133,57 @@
 							<div class="tab-pane fade" id="tab3default">
 								<div class="container box1">
 									<div class="row">
-										<div class="col-xl-10 col-md-10" id="" style="padding:5px 0 0 20px">
-											Input your command : <input class="inbox" type="text" id="inputdata1" value="" style="width:60%;">
-										</div>
-										<div class="col-xl-2 col-md-2" style="padding:0">
-											<button  class="btn btn-primary" href="" role="button" id="runCmdLine" onclick="replace2()" style="margin:5px 0 0 0;">Run</button>
-											<button class="btn btn-primary" role="button" id="stopcmd" style="margin:5px 0 0 0;">Stop</button>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xl-6 col-md-6">
-											<div class="row" style="padding: 15px 0 0 0">
-												<div class="col-xl-1 col-md-1">
-													<button href="#" style="height:100%; padding:0 2px; border:0 5px 0 0;"> < </button>
-												</div>
-												<div class="col-xl-4 col-md-4">
-													<div class="list-group" id="first" role="tablist" >
-														<!--รายชื่อ set1-10-->
-														<a class="list-group-item list-group-item-action active" data-toggle="list" role="tab" href="#second1" style="padding:5px 15px"> first1</a>
-														<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second2" style="padding:5px 15px"> first2 </a>
-														<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second3" style="padding:5px 15px"> first3 </a>
-														<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second4" style="padding:5px 15px"> first4 </a>
-														<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second5" style="padding:5px 15px"> first5 </a>
+										<div class="col-lg-5">
+											<div class="container">
+												<div class="row" style="padding: 15px 0 0 0">
+													<div class="col-xl-1 col-md-1">
+														<button href="#" style="height:100%; padding:0 2px; border:0 5px 0 0;"> < </button>
 													</div>
-												</div>
-												<div class="col-xl-6 col-md-6">
-													<div class="tab-content" id="second">  
-														<!--des set1-10 + รายการใน table-->
-														<div id="second1" class="tab-pane fade show active" role="tab">second1</div>
-														<div id="second2" class="tab-pane fade show" role="tab">second2</div>
-														<div id="second3" class="tab-pane fade show" role="tab">second3</div>
-														<div id="second4" class="tab-pane fade show" role="tab">second4</div>
-														<div id="second5" class="tab-pane fade show" role="tab">second5</div>
+													<div class="col-xl-4 col-md-4">
+														<div class="list-group" id="first" role="tablist" >
+															<!--รายชื่อ set1-10-->
+															<a class="list-group-item list-group-item-action active" data-toggle="list" role="tab" href="#second1" style="padding:5px 15px"> first1</a>
+															<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second2" style="padding:5px 15px"> first2 </a>
+															<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second3" style="padding:5px 15px"> first3 </a>
+															<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second4" style="padding:5px 15px"> first4 </a>
+															<a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#second5" style="padding:5px 15px"> first5 </a>
+														</div>
 													</div>
-												</div>
-												<div class="col-xl-1 col-md-1">
-													<button href="#" style="height:100%; padding:0 2px; border:0 5px 0 0;"> > </button>
+													<div class="col-xl-6 col-md-6">
+														<div class="tab-content" id="second">  
+															<!--des set1-10 + รายการใน table-->
+															<div id="second1" class="tab-pane fade show active" role="tab">second1</div>
+															<div id="second2" class="tab-pane fade show" role="tab">second2</div>
+															<div id="second3" class="tab-pane fade show" role="tab">second3</div>
+															<div id="second4" class="tab-pane fade show" role="tab">second4</div>
+															<div id="second5" class="tab-pane fade show" role="tab">second5</div>
+														</div>
+													</div>
+													<div class="col-xl-1 col-md-1">
+														<button href="#" style="height:100%; padding:0 2px; border:0 5px 0 0;"> > </button>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-6 col-md-6" style="padding: 15px 0px 0px;">
-											<div class="container box2" id="commandBox1"> <!-- กล่อง result แสดงผล-->
-												TAB333333333333333333333333
+										<div class="col-lg-7">
+											<div class="container">
+												<div class="row">
+													<div class="col-lg-10" id="" style="padding:5px 0 0 20px">
+														Input your command : <input class="inbox" type="text" id="inputdata1" value="" style="width:60%;">
+													</div>
+													<div class="col-lg-2" style="padding:0">
+														<button  class="btn btn-primary" href="" role="button" id="runCmdLine" onclick="replace2()" style="margin:5px 0 0 0;">Run</button>
+														<button class="btn btn-primary" role="button" id="stopcmd" style="margin:5px 0 0 0;">Stop</button>
+													</div>
+												</div>
+												<div class="row">
+													<div class="container box2" id="cmdLineDisp"> <!-- กล่อง result แสดงผล-->
+														TAB333333333333333333333333
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>											
+									</div>										
 								</div>
 							</div>
 						</div>
@@ -210,7 +216,7 @@
 			{order:"9999", name:"Last", cmdSetId:"" , cmdId:""}
 		];
 		//var cmdSetState = 0;
-		var user = '{{ Auth::user()->name }}';
+		//var user = '{{ Auth::user()->name }}';
 		var userObj = {};
 		var currentCmdID = -1;
 		var currentTab = '';
@@ -422,8 +428,8 @@
 			if (command == -1) {
 				command = cmdObj.nextCmd('command'); // Bug
 			}
-			if (validate.user(user) && validate.command(command)) {
-				var url = 'http://172.16.41.201/ntms/public/cmd/new/'+user+'.'+command;
+			if (validate.command(command)) {
+				var url = 'http://172.16.41.201/ntms/public/cmd/new/'+command;
 				xRequest(url,function() {
 					if (this.readyState == 4 && this.status == 200) {
 						var json = JSON.parse(this.responseText);
@@ -457,8 +463,7 @@
 		
 		function sendCommand(){
 			var cmdID = currentCmdID;
-			var json = JSON.stringify({cmdID:cmdID,user:user});
-			var url = 'http://172.16.41.201/ntms/public/cmd/cmdstate/'+json;
+			var url = 'http://172.16.41.201/ntms/public/cmd/cmdstate/'+cmdID;
 			xRequest(url,function() {
 				if (this.readyState == 4 && this.status == 200) {
 					var json = JSON.parse(this.responseText);
@@ -469,11 +474,11 @@
 							//RUN
 							var arr = message.split(" ");
 							var command = arr.shift();
-							obj = {command:command,args:arr,cmdID:cmdID,user:user,method:messageMethod,refid:messageRef_id};//user is temp when on product must delete
+							obj = {command:command,args:arr,cmdID:cmdID,method:messageMethod,refid:messageRef_id};//user is temp when on product must delete
 							url = 'http://172.16.41.201/ntms/public/cmd/run/'+JSON.stringify(obj);
 						}else{
 							//SET
-							obj = {cmdID:cmdID,message:message,user:user};
+							obj = {cmdID:cmdID,message:message};
 							url = 'http://172.16.41.201/ntms/public/cmd/set/'+JSON.stringify(obj);
 						}
 						xRequest(url,function() {
@@ -493,61 +498,56 @@
 			});
 		}
 		
-		var tempT = {};
 		function getUserCommand(){
-			if (validate.user(user)) {
-				console.log('[GETUSERCMD]'+user);
-				var url = 'http://172.16.41.201/ntms/public/cmd/getallcmd/'+user;
-				var haveArgs = arguments.length > 0;
-				var arg0 = (function(haveArgs,args){
-					if (haveArgs) {
-						return args[0];
-					}
-				})(haveArgs,arguments);
-				xRequest(url,function() {
-					if (this.readyState == 4 && this.status == 200) {
-						var json = JSON.parse(this.responseText);
-						userObj = json;
-						/* Clear cmdObj */
-						cmdObj.arr = [];
-						for (i=0;i<json.myCommand.length;i++){
-							/* Init cmdObj */
-							var j = cmdObj.newCmd(json.myCommand[i],json.myID[i]);
-							cmdObj.arr[j].message.history = json.myHistory[i];
-							cmdObj.arr[j].tabID = 'cmd'+json.myID[i]+json.myCommand[i];
-							cmdObj.arr[j].max = json.max;
-							/* Set Tab Exist State */
-							if (cmdObj.arr[j].command.search(/^Tab[\d]+$/g) != -1) {
-								currentCommandCmdID = json.myID[i];
-								tabExist[0] = true;
-							} else if (cmdObj.arr[j].command.search('commandSet') != -1) {
-								cmdSetGlobal.cmdSetCmdID = json.myID[i];
-								tabExist[1] = true;
-							}
-						}
-						if (tabExist[0] && tabExist[1]) {
-							console.log('[TABREFRESH]');
-							if (haveArgs){
-								tabCommandRefresh(json,arg0);
-							}else{
-								tabCommandRefresh(json);
-							}
-						} else if (!tabExist[0] && tabExist[1]) {
-							console.log('[NEWTAB]');
-							newCommand(-1);
-						} else if (tabExist[0] && !tabExist[1]) {
-							console.log('[NEWCMDSET]');
-							newCommand('commandSet');
-						} else {
-							console.log('[NEW-TAB&CMDSET]');
-							newCommand(-1);
-							newCommand('commandSet');
+			console.log('[GETUSERCMD]');
+			var url = 'http://172.16.41.201/ntms/public/cmd/getallcmd';
+			var haveArgs = arguments.length > 0;
+			var arg0 = (function(haveArgs,args){
+				if (haveArgs) {
+					return args[0];
+				}
+			})(haveArgs,arguments);
+			xRequest(url,function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var json = JSON.parse(this.responseText);
+					userObj = json;
+					/* Clear cmdObj */
+					cmdObj.arr = [];
+					for (i=0;i<json.myCommand.length;i++){
+						/* Init cmdObj */
+						var j = cmdObj.newCmd(json.myCommand[i],json.myID[i]);
+						cmdObj.arr[j].message.history = json.myHistory[i];
+						cmdObj.arr[j].tabID = 'cmd'+json.myID[i]+json.myCommand[i];
+						cmdObj.arr[j].max = json.max;
+						/* Set Tab Exist State */
+						if (cmdObj.arr[j].command.search(/^Tab[\d]+$/g) != -1) {
+							currentCommandCmdID = json.myID[i];
+							tabExist[0] = true;
+						} else if (cmdObj.arr[j].command.search('commandSet') != -1) {
+							cmdSetGlobal.cmdSetCmdID = json.myID[i];
+							tabExist[1] = true;
 						}
 					}
-				});
-			} else {
-				$('input#user').parent().addClass("has-error");
-			}
+					if (tabExist[0] && tabExist[1]) {
+						console.log('[TABREFRESH]');
+						if (haveArgs){
+							tabCommandRefresh(json,arg0);
+						}else{
+							tabCommandRefresh(json);
+						}
+					} else if (!tabExist[0] && tabExist[1]) {
+						console.log('[NEWTAB]');
+						newCommand(-1);
+					} else if (tabExist[0] && !tabExist[1]) {
+						console.log('[NEWCMDSET]');
+						newCommand('commandSet');
+					} else {
+						console.log('[NEW-TAB&CMDSET]');
+						newCommand(-1);
+						newCommand('commandSet');
+					}
+				}
+			});
 		}
 		
 		function getCommand(cmdID,clientIndex,tabID){
@@ -586,8 +586,7 @@
 		
 		function breakCommand(cmdID){
 			cmdSetGlobal.cmdSetBreak = true;
-			var json = JSON.stringify({cmdID:cmdID,user:user});
-			var url = 'http://172.16.41.201/ntms/public/cmd/break/'+json;
+			var url = 'http://172.16.41.201/ntms/public/cmd/break/'+cmdID;
 			xRequest(url,function() {
 				if (this.readyState == 4 && this.status == 200) {
 					var json = JSON.parse(this.responseText);
@@ -603,7 +602,7 @@
 		}
 		
 		function clearCommand(){
-			var url = 'http://172.16.41.201/ntms/public/cmd/clearallcmd/'+user;
+			var url = 'http://172.16.41.201/ntms/public/cmd/clearallcmd';
 			xRequest(url,function() {
 				if (this.readyState == 4 && this.status == 200) {
 					var json = JSON.parse(this.responseText);
@@ -763,8 +762,7 @@
 			if (i<messageArr.length && !cmdSetGlobal.cmdSetBreak) {
 				console.log('SEND['+i+'] '+messageArr[i].name);
 				var cmdID = cmdSetGlobal.cmdSetCmdID;
-				var json = JSON.stringify({cmdID:cmdID,user:user});
-				var url = 'http://172.16.41.201/ntms/public/cmd/cmdstate/'+json;
+				var url = 'http://172.16.41.201/ntms/public/cmd/cmdstate/'+cmdID;
 				xRequest(url,function() {
 					if (this.readyState == 4 && this.status == 200) {
 						var json = JSON.parse(this.responseText);
@@ -776,11 +774,11 @@
 								//RUN
 								var arr = msg.split(" ");
 								var command = arr.shift();
-								obj = {command:command,args:arr,cmdID:cmdID,user:user,method:messageArr[i].method,refid:messageArr[i].ref_id};//user is temp when on product must delete
+								obj = {command:command,args:arr,cmdID:cmdID,method:messageArr[i].method,refid:messageArr[i].ref_id};
 								url = 'http://172.16.41.201/ntms/public/cmd/run/'+JSON.stringify(obj);
 							}else{
 								//SET
-								obj = {cmdID:cmdID,message:msg,user:user};
+								obj = {cmdID:cmdID,message:msg};
 								url = 'http://172.16.41.201/ntms/public/cmd/set/'+JSON.stringify(obj);
 							}
 							xRequest(url,function() {

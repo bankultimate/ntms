@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 //use Illuminate\Http\Request;
@@ -19,12 +20,18 @@ class ApiController extends Controller
 		*/
 	}
 	
-	public function newCmd($user,$command){
+	public function view(){
+		$string = str_replace(' ', '', Auth::user()->name.Auth::user()->id);/*Auth::user()->name*/
+		return $this->getUser();
+	}
+	
+	public function newCmd($command){
 		$client = new Client();
+		$user = $this->getUser();
 		/* Bypass User */
-		$url = 'http://172.16.41.201:3000/cmd/new';
-			//code here
-		$response = $client->request('GET', 'http://172.16.41.201:3000/cmd/new?user='.$user.'&command='.$command);
+		$url = 'http://172.16.41.201:3000/cmd/new?user='.$user.'&command='.$command;
+		/* Response Init */
+		$response = $client->request('GET', $url);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
 		//{"cmd":"ping 10.1.1.254 ","cmdID":1}
@@ -33,8 +40,9 @@ class ApiController extends Controller
 			'command' => $jsonDecode['command']]);
 	}
 	
-	public function getAllCmd($user){
+	public function getAllCmd(){
 		$client = new Client();
+		$user = $this->getUser();
 		$response = $client->request('GET', 'http://172.16.41.201:3000/cmd/getallcmd?user='.$user);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
@@ -47,9 +55,11 @@ class ApiController extends Controller
 			'max' => $jsonDecode['max']]);
 	}
 	
-	public function clearAllCmd($user){
+	public function clearAllCmd(){
 		$client = new Client();
-		$response = $client->request('GET', 'http://172.16.41.201:3000/cmd/clearallcmd?user='.$user);
+		$user = $this->getUser();
+		$url = 'http://172.16.41.201:3000/cmd/clearallcmd?user='.$user;
+		$response = $client->request('GET', $url);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
 		//{"cmd":"ping 10.1.1.254 ","cmdID":1}
@@ -59,6 +69,7 @@ class ApiController extends Controller
 	
 	public function runCmd($json){
 		$client = new Client();
+		$user = $this->getUser();
 		$jsonDecode = json_decode($json,true);
 		$url = 'http://172.16.41.201:3000/cmd/run';
 		$body = '';
@@ -68,9 +79,9 @@ class ApiController extends Controller
 				->where('id', '=', $jsonDecode['refid'])
 				->get();
 			$jsonRemoteProfile = json_encode($remoteProfile[0]);
-			$body = ['json'=>$json,'user'=>$jsonDecode['user'],'remoteProfile'=>$jsonRemoteProfile];
+			$body = ['json'=>$json,'user'=>$user,'remoteProfile'=>$jsonRemoteProfile];
 		} else {
-			$body = ['json'=>$json,'user'=>$jsonDecode['user']];
+			$body = ['json'=>$json,'user'=>$user];
 		}
 		$response = $client->request('POST', $url,['json'=>$body]);
 		$body = (string) $response->getBody();
@@ -83,10 +94,10 @@ class ApiController extends Controller
 
 	public function getCmd($json){
 		$client = new Client();
+		$user = $this->getUser();
 		$jsonDecode = json_decode($json,true);
-		$response = $client->request('GET', 
-			'http://172.16.41.201:3000/cmd/get?cmdID='.$jsonDecode['cmdID'].'&clientIndex='.$jsonDecode['clientIndex']
-		);
+		$url = 'http://172.16.41.201:3000/cmd/get?cmdID='.$jsonDecode['cmdID'].'&clientIndex='.$jsonDecode['clientIndex'].'&user='.$user;
+		$response = $client->request('GET', $url);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
 		//{"cmd":"ping 10.1.1.254 ","cmdID":1}
@@ -100,10 +111,10 @@ class ApiController extends Controller
 	
 	public function setCmd($json){
 		$client = new Client();
+		$user = $this->getUser();
 		$jsonDecode = json_decode($json,true);
-		$response = $client->request('GET', 
-			'http://172.16.41.201:3000/cmd/set?cmdID='.$jsonDecode['cmdID'].'&message='.$jsonDecode['message'].'&user='.$jsonDecode['user']
-		);
+		$url = 'http://172.16.41.201:3000/cmd/set?cmdID='.$jsonDecode['cmdID'].'&message='.$jsonDecode['message'].'&user='.$user;
+		$response = $client->request('GET', $url);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
 		//{"cmd":"ping 10.1.1.254 ","cmdID":1}
@@ -112,12 +123,11 @@ class ApiController extends Controller
 			'state' => $jsonDecode['state']]);
 	}
 	
-	public function breakCmd($json){
+	public function breakCmd($cmdID){
 		$client = new Client();
-		$jsonDecode = json_decode($json,true);
-		$response = $client->request('GET', 
-			'http://172.16.41.201:3000/cmd/break?cmdID='.$jsonDecode['cmdID'].'&user='.$jsonDecode['user']
-		);
+		$user = $this->getUser();
+		$url = 'http://172.16.41.201:3000/cmd/break?cmdID='.$cmdID.'&user='.$user;
+		$response = $client->request('GET', $url);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
 		//{"cmd":"ping 10.1.1.254 ","cmdID":1}
@@ -126,17 +136,21 @@ class ApiController extends Controller
 			'state' => $jsonDecode['state']]);
 	}
 	
-	public function stateCmd($json){
+	public function stateCmd($cmdID){
 		$client = new Client();
-		$jsonDecode = json_decode($json,true);
-		$response = $client->request('GET', 
-			'http://172.16.41.201:3000/cmd/cmdstate?cmdID='.$jsonDecode['cmdID'].'&user='.$jsonDecode['user']
-		);
+		$user = $this->getUser();
+		$url = 'http://172.16.41.201:3000/cmd/cmdstate?cmdID='.$cmdID.'&user='.$user;
+		$response = $client->request('GET', $url);
 		$body = (string) $response->getBody();
 		$jsonDecode = json_decode($body,true);
 		//{"cmd":"ping 10.1.1.254 ","cmdID":1}
 		return response()->json(['cmdID' => $jsonDecode['cmdID'],
 			'end' => $jsonDecode['end'],
 			'state' => $jsonDecode['state']]);
+	}
+	
+	private function getUser(){
+		//str_replace(' ', '', Auth::user()->name.Auth::user()->id)
+		return Auth::user()->email;
 	}
 }

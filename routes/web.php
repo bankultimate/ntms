@@ -55,11 +55,11 @@ Route::get('btDelCmdSet/{id}','CommandController@delete');
 /* vvv Bank Test vvv */
 Route::get('view','TestController@view');
 
-Route::get('cmd/new/{user}.{command}','ApiController@newCmd');
+Route::get('cmd/new/{command}','ApiController@newCmd');
 
-Route::get('cmd/getallcmd/{user}','ApiController@getAllCmd');
+Route::get('cmd/getallcmd','ApiController@getAllCmd');
 
-Route::get('cmd/clearallcmd/{user}','ApiController@clearAllCmd');
+Route::get('cmd/clearallcmd','ApiController@clearAllCmd');
 
 Route::get('cmd/run/{json}','ApiController@runCmd');
 
@@ -67,10 +67,11 @@ Route::get('cmd/get/{json}','ApiController@getCmd');
 
 Route::get('cmd/set/{json}','ApiController@setCmd');
 
-Route::get('cmd/break/{json}','ApiController@breakCmd');
+Route::get('cmd/break/{cmdID}','ApiController@breakCmd');
 
+route::get('cmd/view','ApiController@view');
 // {"cmdID":0,"user":"user_example"}
-Route::get('cmd/cmdstate/{json}','ApiController@stateCmd');
+Route::get('cmd/cmdstate/{cmdID}','ApiController@stateCmd');
 /* ^^^ Bank Test ^^^ */
 
 /*หน้าล็อคอินใหม่*/
