@@ -27,49 +27,98 @@
 							<div class="tab-pane in active" id="tab1default">
 								<div class="container box1">
 									<div class="row">
-										<div class="col-xl-3 col-md-3">	
-											<div class="form-group">
-												<select class="form-control command" id="exampleFormControlSelect1">
-													{{-- @foreach ($num2 as $num) --}}
-													<option>{{--{{ $num->name }}--}}</option>
-													{{--@endforeach--}}
-												</select>
+										<div class="col-lg-4">
+											<div class="container">
+												<div class="row" style="background-color: rgb(33, 33, 33); padding-top: 10px; padding-bottom: 10px;">
+													<div class="col-xl-12 col-md-12"> 
+														<h4><b> Use a Command </b></h4>
+													</div>
+												</div>
+												<div class="row" style="padding-top: 10px;background-color: rgb(97, 97, 97);">
+													<div class="col-xl-12 col-md-12">
+														<div class="form-group">
+															<select class="form-control command" id="exampleFormControlSelect1">
+
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="row" style="background-color: rgb(97, 97, 97);">
+													<div class="col-xl-3 col-md-3" style="padding:10px;background-color: rgb(66, 66, 66);">
+														<button type="button" class="btn btn-secondary" style="width:100%;height:40px;"><img style="height:100%;" src="svg/si-glyph-house.svg"/></button>
+													</div>
+													<div class="col-xl-9 col-md-9" style="padding:10px 10px 10px 0px;background-color: rgb(66, 66, 66);">
+														<button type="button" class="btn btn-secondary" style="width:100%;height:40px;vertical-align:middle;">Back</button>
+													</div>
+												</div>
+												<div id="cmdMenu" class="row" style="padding: 0px;background-color: rgb(97, 97, 97);">
+													<div class="col-xl-6 col-md-6" style="padding:0px;" id="cmdMenu0Box">
+														<div class="list-group" id="cmdMenu0" role="tablist">
+															<a class="list-group-item list-group-item-action" id="cmdMenu0-0-ping" data-toggle="list" href="#">ping</a>
+															<a class="list-group-item list-group-item-action" id="cmdMenu0-1-tracert" data-toggle="list" href="#">tracert</a>
+															<a class="list-group-item list-group-item-action" id="cmdMenu0-2-nslookup" data-toggle="list" href="#">nslookup</a>
+															<a class="list-group-item list-group-item-action" id="cmdMenu0-3-telnet" data-toggle="list" href="#">telnet</a>
+														</div>
+													</div>
+													<div class="col-xl-6 col-md-6" style="padding:0px;" id="cmdMenu1Box">
+														<div class="list-group" id="cmdMenu1" role="tablist">
+															<a class="list-group-item list-group-item-action" id="cmdMenu0-3-telnet" data-toggle="list" href="#">Home</a>
+															<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#">Profile</a>
+															<a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#">Messages</a>
+															<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#">Settings</a>
+														</div>
+													</div>
+													<div class="col-xl-6 col-md-6" style="padding:0px;" id="cmdMenu2Box">
+														<div class="list-group" id="cmdMenu2" role="tablist">
+															<a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#">Home</a>
+															<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#">Profile</a>
+															<a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#">Messages</a>
+															<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#">Settings</a>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="col-xl-7 col-md-7" id="inputForCMD">
-											
-										</div>
-										<div class="col-xl-2 col-md-2">	
-											<button class="btn btn-primary" href="" role="button" id="runcmd" onclick="replace1()" style="margin-right:1%;width:48%;">Run</button>
-											<button class="btn btn-danger" href="" role="button" id="t1stopcmd" onclick="" style="width:48%;">Stop</button>
-										</div>
-									</div>	
-									<!--div class="row">
-										<div class="col-xl-3 col-md-3"></div>
-										<div class="col-xl-9 col-md-9">
-											<div class="panel panel-default">
-												<div class="panel-body">A Basic Panel</div>
+										<div class="col-lg-8">
+											<div class="container" style="padding-left:0px;">
+												<div class="row" style="background-color: rgb(33, 33, 33); padding-top: 10px; padding-bottom: 10px;">
+													<div class="col-xl-8 col-md-8" id="inputForCMD">
+														
+													</div>
+													<div class="col-xl-4 col-md-4">	
+														<button class="btn btn-primary" href="" role="button" id="runcmd" onclick="replace1()" style="margin-right:1%;width:48%;">Run</button>
+														<button class="btn btn-danger" href="" role="button" id="t1stopcmd" onclick="" style="width:48%;">Stop</button>
+													</div>
+												</div>	
+												<!--div class="row">
+													<div class="col-xl-3 col-md-3"></div>
+													<div class="col-xl-9 col-md-9">
+														<div class="panel panel-default">
+															<div class="panel-body">A Basic Panel</div>
+														</div>
+													</div>
+												</div-->
+												<div class="row" style="padding-top:10px;">
+													<div class="col-xl-5 col-md-5">	
+														<button class="btn btn-success" type="button" id="bNewTab" style="margin-right:10px;width:45%;">New Tab</button>
+														<button class="btn btn-danger" type="button" id="bCommandTabClear" style="width:45%;">Clear</button>
+													</div>
+												</div>
+												<!-- Tab in Tab กล่อง result แสดงผล-->
+												<div class="panel-heading" style="margin-top:20px;">
+													<ul class="nav nav-tabs" id="cmdNav">
+														<!-- li -->
+													</ul>
+												</div>
+												<div class="tab-content" id="cmdContent">
+													<!-- div แสดงผล -->
+												</div>
+												<!-- end Tab in Tab กล่อง result แสดงผล-->
+												<button id="btCopy" onclick="copyCmd()" class="btn btn-primary" > Copy </button>
+												<div id="temp"></div>
 											</div>
 										</div>
-									</div-->
-									<div class="row">
-										<div class="col-xl-3 col-md-3">	
-											<button class="btn btn-success" type="button" id="bNewTab" style="margin-right:10px;width:45%;">New Tab</button>
-											<button class="btn btn-danger" type="button" id="bCommandTabClear" style="width:45%;">Clear</button>
-										</div>
 									</div>
-									<!-- Tab in Tab กล่อง result แสดงผล-->
-									<div class="panel-heading" style="margin-top:20px;">
-										<ul class="nav nav-tabs" id="cmdNav">
-											<!-- li -->
-										</ul>
-									</div>
-									<div class="tab-content" id="cmdContent">
-										<!-- div แสดงผล -->
-									</div>
-									<!-- end Tab in Tab กล่อง result แสดงผล-->
-									<button id="btCopy" onclick="copyCmd()" class="btn btn-primary" > Copy </button>
-									<div id="temp"></div>
 								</div>
 							</div>
 							<div class="tab-pane fade" id="tab2default">
@@ -214,6 +263,18 @@
 			{order:{{ $content->order }}, name:"{{ $content->name }}", cmdSetId:"{{ $content->cmdSetId }}",cmdId:"{{ $content->cmdId }}"},
 		@endforeach
 			{order:"9999", name:"Last", cmdSetId:"" , cmdId:""}
+		];
+		var cmdChild = [
+		@foreach ($command_childs as $command_child)
+			{cmd_id:{{ $command_child->cmd_id }}, chi_id:{{ $command_child->chi_id }}},
+		@endforeach
+			{cmd_id:0,chi_id:0}
+		];
+		var cmdChildGroup = [
+		@foreach ($command_child_group as $group)
+			{{ $group->cmd_id }},
+		@endforeach
+			-1
 		];
 		//var cmdSetState = 0;
 		//var user = '{{ Auth::user()->name }}';
@@ -885,6 +946,86 @@
 			} 
 			$("#runcmd").attr("onclick", "replace1()");
 			$("#exampleFormControlSelect1").html(cmdOption);
+			
+			var cmdMenuTemplate = {
+				init:function(cmdID){
+					var content = '';
+					for (i=0;i<(cmdChild.length-1);i++){
+						if (cmdChild[i].cmd_id == cmdID){
+							for (j=0;j<(cmdArr.length-1);j++){
+								if (cmdArr[j].id == cmdChild[i].chi_id){
+									content += this.listInit(cmdID,cmdChild[i].chi_id,cmdArr[j].name);
+								}
+							}
+						}
+					}
+					content = this.listGInit(cmdID,content);
+					content = this.boxInit(cmdID,content);
+					return content;
+				},
+				boxInit:function(id,content){
+					var temp = '<div class="col-xl-6 col-md-6" style="padding:0px;" id="';
+					temp += 'cmdMenuBox-'+id+'">';
+					temp += content+'</div>';
+					return temp;
+				},
+				listGInit:function(id,content){
+					var temp = '<div class="list-group" id="';
+					temp += 'cmdMenuListG-'+id+'" role="tablist">';
+					temp += content+'</div>';
+					return temp;
+				},
+				listInit:function(cmd_id,chi_id,content){
+					var temp = '<a class="list-group-item list-group-item-action" id="';
+					temp += 'cmdMenuList-'+cmd_id+'-'+chi_id;
+					temp += '" data-toggle="list" onclick="menuSelect(';
+					temp += cmd_id+','+chi_id+')" href="#">';
+					temp += content+'</a>';
+					return temp;
+				}
+			};
+			$('#cmdMenu').html('');
+			for (x=0;x<(cmdChildGroup.length-1);x++){
+				$('#cmdMenu').append(cmdMenuTemplate.init(cmdChildGroup[x]));
+				$('#cmdMenuBox-'+cmdChildGroup[x]).hide();
+			}
+			$('#cmdMenuBox-0').show();
+		}
+		
+		var menuSelectState = [0,-1];
+		function menuSelect(parrentID,cmdID){
+			action = false;
+			for (i=0;i<(cmdChildGroup.length-1);i++){
+				if (cmdID==cmdChildGroup[i]){
+					action = true;
+					break;
+				}
+			}
+			if(action){
+				if(menuSelectState[0]==parrentID){
+					// Have Child and Select is left menu
+					if(menuSelectState[1]!=-1){
+						$('#cmdMenuBox-'+menuSelectState[1]).hide();
+					}
+					$('#cmdMenuBox-'+cmdID).show();
+					menuSelectState[1]=cmdID;
+				}else{
+					// Have Child and Select is right menu
+					$('#cmdMenuBox-'+parrentID).hide();
+					$('#cmdMenuBox-'+cmdID).show();
+					menuSelectState[0]=cmdID;
+					menuSelectState[1]=-1;
+				}
+			}else{
+				if(menuSelectState[0]==parrentID){
+					// No Child and Select is left menu
+					$('#cmdMenuBox-'+menuSelectState[1]).hide();
+					menuSelectState[1]=-1;
+				}else{
+					// No Child and Select is right menu
+					
+				}
+			}
 		}
 		
 		// Print input list of command when click command

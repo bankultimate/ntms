@@ -21,8 +21,8 @@ class ApiController extends Controller
 	}
 	
 	public function view(){
-		$string = str_replace(' ', '', Auth::user()->name.Auth::user()->id);/*Auth::user()->name*/
-		return $this->getUser();
+		$command_childs=DB::table('command_child')->groupBy('cmd_id')->select('cmd_id')->get();
+		return $command_childs;
 	}
 	
 	public function newCmd($command){

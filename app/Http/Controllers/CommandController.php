@@ -52,8 +52,12 @@ class CommandController extends Controller
 				->select('command_in_set.order as order','command.name as name','command_in_set.cmd_set_id as cmdSetId','command_in_set.cmd_id as cmdId')
 				->get();
 			
+			$command_childs=DB::table('command_child')->select('cmd_id','chi_id')->get();
+			
+			$command_child_group=DB::table('command_child')->groupBy('cmd_id')->select('cmd_id')->get();
+			
 			/* Reture View complete or return Status complete */
-			return  view('homepage', ['num2'=>$drop,'buttons'=>$buttons ,'contents'=>$contents ]);
+			return  view('homepage', ['num2'=>$drop,'buttons'=>$buttons ,'contents'=>$contents, 'command_childs'=>$command_childs ,'command_child_group'=>$command_child_group]);
 		}
 		
 		public function create()
