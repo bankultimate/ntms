@@ -53,8 +53,8 @@
 													<option value="{{ $list1->id }}">{{ $list1->name }}</option>   
 												@endforeach
 												</select>
-												<a href="javascript:void(0);" id="btn-up-source" class="btn btn-success btn-sm">Up</a>
-												<a href="javascript:void(0);" id="btn-down-source" class="btn btn-success btn-sm">Down</a>
+												<a href="javascript:void(0);" id="btn-up-source" class="btn btn-success btn-sm" style="width:15%;">Up</a>
+												<a href="javascript:void(0);" id="btn-down-source" class="btn btn-success btn-sm" style="width:15%;">Down</a>
 											</div>
 											<div class="col-xl-2 col-md-4"> <!--<img class="si-glyph" src="svg/si-glyph-arrow-left.svg" />-->
 												<a href="javascript:void(0);" id="btn-add" name="btn-add" class="btn btn-primary btn-block">
@@ -68,13 +68,13 @@
 												<select name="selectto" id="select-to" multiple="multiple" size="9" class="form-control">
 													
 												</select>
-												<a href="javascript:void(0);" id="btn-up" class="btn btn-success btn-sm">Up</a>
-												<a href="javascript:void(0);" id="btn-down" class="btn btn-success btn-sm">Down</a>
+												<a href="javascript:void(0);" id="btn-up" class="btn btn-success btn-sm" style="width:15%;">Up</a>
+												<a href="javascript:void(0);" id="btn-down" class="btn btn-success btn-sm" style="width:15%;">Down</a>
 											</div>
 										</div>
 									<br/><br/>
-									<input class="btn btn-primary" id="send" type="button" onclick="btCreate()" value="Submit" />
-									<a class="btn btn-primary" href="{{ URL::action('CommandController@home') }}" role="button"> Back </a>
+									<input class="btn btn-primary" style="width:10%;" id="send" type="button" onclick="btCreate()" value="Submit" />
+									<a class="btn btn-danger" style="width:10%;" href="{{ URL::action('CommandController@home') }}" role="button"> Back </a>
 									{{ csrf_field() }}
 									</fieldset>
 								</form>

@@ -1001,26 +1001,36 @@
 					break;
 				}
 			}
+			console.log('Args['+parrentID+','+cmdID+']');
 			if(action){
 				if(menuSelectState[0]==parrentID){
 					// Have Child and Select is left menu
 					if(menuSelectState[1]!=-1){
 						$('#cmdMenuBox-'+menuSelectState[1]).hide();
 					}
-					$('#cmdMenuBox-'+cmdID).show();
-					menuSelectState[1]=cmdID;
+					$('#cmdMenuBox-'+cmdID).show('fast',function(){
+						menuSelectState[1]=cmdID;
+						console.log('State['+menuSelectState[0]+','+menuSelectState[1]+']');
+					});
 				}else{
 					// Have Child and Select is right menu
-					$('#cmdMenuBox-'+parrentID).hide();
-					$('#cmdMenuBox-'+cmdID).show();
-					menuSelectState[0]=cmdID;
-					menuSelectState[1]=-1;
+					$('#cmdMenuBox-'+menuSelectState[0]).animate({opacity:'0'},'fast');
+					$('#cmdMenuBox-'+parrentID).animate({right: $('#cmdMenuBox-'+parrentID).width()+'px'},function(){
+						$('#cmdMenuBox-'+menuSelectState[0]).hide('fast',function(){
+							$('#cmdMenuBox-'+cmdID).show('fast');
+							$('#cmdMenuBox-'+parrentID).css('right','0px');
+							menuSelectState[0]=parrentID;
+							menuSelectState[1]=cmdID;
+						});
+					});
+					
 				}
 			}else{
 				if(menuSelectState[0]==parrentID){
 					// No Child and Select is left menu
-					$('#cmdMenuBox-'+menuSelectState[1]).hide();
-					menuSelectState[1]=-1;
+					$('#cmdMenuBox-'+menuSelectState[1]).hide('fast',function(){
+						menuSelectState[1]=-1;
+					});
 				}else{
 					// No Child and Select is right menu
 					

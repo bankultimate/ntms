@@ -52,7 +52,7 @@ class CommandController extends Controller
 				->select('command_in_set.order as order','command.name as name','command_in_set.cmd_set_id as cmdSetId','command_in_set.cmd_id as cmdId')
 				->get();
 			
-			$command_childs=DB::table('command_child')->select('cmd_id','chi_id')->get();
+			$command_childs=DB::table('command_child')->select('cmd_id','chi_id')->orderBy('c_order', 'asc')->get();
 			
 			$command_child_group=DB::table('command_child')->groupBy('cmd_id')->select('cmd_id')->get();
 			
