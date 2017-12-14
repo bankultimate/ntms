@@ -31,7 +31,7 @@
 											<div class="container">
 												<div class="row" style="background-color: rgb(33, 33, 33); padding-top: 10px; padding-bottom: 10px;">
 													<div class="col-xl-12 col-md-12"> 
-														<h4><b> Use a Command </b></h4>
+														<h4><b>Use a Command </b><span id="useACommand"></span></h4>
 													</div>
 												</div>
 												<div class="row" style="padding-top: 10px;background-color: rgb(97, 97, 97);">
@@ -45,10 +45,10 @@
 												</div>
 												<div class="row" style="background-color: rgb(97, 97, 97);">
 													<div class="col-xl-3 col-md-3" style="padding:10px;background-color: rgb(66, 66, 66);">
-														<button type="button" class="btn btn-secondary" style="width:100%;height:40px;"><img style="height:100%;" src="svg/si-glyph-house.svg"/></button>
+														<button type="button" class="btn btn-secondary" style="width:100%;height:40px;" onclick="menuHome()"><img style="height:100%;" src="svg/si-glyph-house.svg"/></button>
 													</div>
 													<div class="col-xl-9 col-md-9" style="padding:10px 10px 10px 0px;background-color: rgb(66, 66, 66);">
-														<button type="button" class="btn btn-secondary" style="width:100%;height:40px;vertical-align:middle;">Back</button>
+														<button type="button" class="btn btn-secondary" style="width:100%;height:40px;vertical-align:middle;" onclick="menuBack()">Back</button>
 													</div>
 												</div>
 												<div id="cmdMenu" class="row" style="padding: 0px;background-color: rgb(97, 97, 97);">
@@ -993,6 +993,7 @@
 		}
 		
 		var menuSelectState = [0,-1];
+		var menuBreadcrumb = [];
 		function menuSelect(parrentID,cmdID){
 			action = false;
 			for (i=0;i<(cmdChildGroup.length-1);i++){
@@ -1001,7 +1002,6 @@
 					break;
 				}
 			}
-			console.log('Args['+parrentID+','+cmdID+']');
 			if(action){
 				if(menuSelectState[0]==parrentID){
 					// Have Child and Select is left menu
@@ -1010,7 +1010,6 @@
 					}
 					$('#cmdMenuBox-'+cmdID).show('fast',function(){
 						menuSelectState[1]=cmdID;
-						console.log('State['+menuSelectState[0]+','+menuSelectState[1]+']');
 					});
 				}else{
 					// Have Child and Select is right menu
@@ -1019,11 +1018,11 @@
 						$('#cmdMenuBox-'+menuSelectState[0]).hide('fast',function(){
 							$('#cmdMenuBox-'+cmdID).show('fast');
 							$('#cmdMenuBox-'+parrentID).css('right','0px');
+							menuBreadcrumb.push(menuSelectState[0]);
 							menuSelectState[0]=parrentID;
 							menuSelectState[1]=cmdID;
 						});
 					});
-					
 				}
 			}else{
 				if(menuSelectState[0]==parrentID){
@@ -1034,6 +1033,61 @@
 				}else{
 					// No Child and Select is right menu
 					
+				}
+			}
+			cmdSelect(cmdID);
+		}
+		
+		function menuBack(){
+			if(menuSelectState[0]!=0){
+				var s2 = function(){
+					var oldLeft = menuSelectState[0];
+					var left = menuBreadcrumb.pop();
+					menuSelectState = [left,-1];
+					$('#cmdMenuListG-'+oldLeft+' > a').removeClass('active');
+					$('#cmdMenuBox-'+oldLeft).hide('fast',function(){
+						$('#cmdMenuBox-'+left).css('opacity','1');
+						$('#cmdMenuBox-'+left).show('fast',function(){
+							$('#cmdMenuList-'+left+'-'+oldLeft).click();
+						});
+					});
+				}
+				if(menuSelectState[1]!=-1){
+					$('#cmdMenuListG-'+menuSelectState[1]+' > a').removeClass('active');
+					$('#cmdMenuBox-'+menuSelectState[1]).hide('fast',function(){
+						s2();
+					});
+				}else{
+					s2();
+				}
+			}
+		}
+		
+		function menuHome(){
+			if(menuSelectState[0]!=0){
+				var s2 = function(){
+					var oldLeft = menuSelectState[0];
+					var left = 0;
+					var right = menuBreadcrumb[1];
+					if(menuBreadcrumb.length<2){
+						right = oldLeft;
+					}
+					menuBreadcrumb = [];
+					menuSelectState = [left,-1];
+					$('#cmdMenu > div > div > a').removeClass('active');
+					$('#cmdMenu > div').css('opacity','1');
+					$('#cmdMenuBox-'+oldLeft).hide('fast',function(){
+						$('#cmdMenuBox-'+left).css('opacity','1');
+						$('#cmdMenuBox-'+left).show('fast');
+						$('#cmdMenuList-'+left+'-'+right).click();
+						$('#cmdMenuList-'+left+'-'+right).addClass('active');
+					});
+				}
+				if(menuSelectState[1]!=-1){
+					$('#cmdMenuBox-'+menuSelectState[1]).hide();
+					s2();
+				}else{
+					s2();
 				}
 			}
 		}
@@ -1056,18 +1110,21 @@
 				var l = param.length;
 				for (i = 0;i<l;i++) {
 					var subParam = param[i].substring(1,param[i].length -1);
-					output += '<div class="row"><div class="col-xl-1 col-md-1"></div>' +
-						'<div class="col-xl-3 col-md-3">' + subParam + ' : </div>';
+					output += '<div class="row">'+
+						'<div class="col-xl-4 col-md-4">'+ 		
+							subParam+' : '+
+						'</div>';
 					subParam = subParam.replace(/ /gm,'');
 					output += 
 						'<div class="col-xl-8 col-md-8">'+
-							'<input class="inbox runCommand" type="text" id="' + 'command'+subParam + '" value="" onkeydown="enterToRunCmd(event)">' +
+							'<input class="inbox runCommand" type="text" id="' + 'command'+subParam + '" value="" onkeydown="enterToRunCmd(event)" style="width:100%;">' +
 						'</div>'+
 					'</div>';
 				}
 				output += '</div>';
 			}
 			$("#inputForCMD").html(output);
+			$("#useACommand").html('['+messageCmd+']');
 		}
 		
 		//copy button
